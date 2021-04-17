@@ -65,17 +65,19 @@ class Moderation(commands.Cog):
         """Kick function"""
         if ctx.author != member:
             await member.kick(reason=reason)
-            await ctx.send(f"This putta {member.display_name} has been kicked.")
+            await ctx.send(f"{member.display_name} has been kicked.")
         else:
             await ctx.send(f"You can't kick yourself {member.mention}")
 
     @commands.command()
+    @commands.has_permissions(ban_members=True)
     async def ban(self, ctx, member : discord.Member, *, reason=None):
         """Ban Function"""
         await member.ban(reason=reason)
-        await ctx.send(f'Banned this putta {member.mention}')
+        await ctx.send(f'Banned {member.mention}')
 
     @commands.command()
+    @commands.has_permissions(ban_members=True)
     async def unban(self, ctx, *, member):
         """Unban Function"""
         banned_users = await ctx.guild.bans()

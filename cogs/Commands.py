@@ -28,8 +28,6 @@ class Commands(commands.Cog):
             'lua': 'https://www.lua.org/docs.html',
             'neovim': 'https://neovim.io/doc/user/',
             'neovim-plugins': 'https://github.com/rockerBOO/awesome-neovim',
-            'pygame': 'https://www.pygame.org/docs',
-            'aiohttp': 'https://docs.aiohttp.org/en/stable'
         }
 
         if obj is None:
@@ -62,7 +60,6 @@ class Commands(commands.Cog):
         author = {
             "latest": "discord.py",
             "python": "python",
-            "pygame": "pygame"
         }.get(key, key)
 
         e.set_author(name=f"{author} docs result", url=page_types.get(key, 'unknown'))
@@ -98,18 +95,6 @@ class Commands(commands.Cog):
         """Gives you a documentation link for a Neovim-plugins entity.
         Props to github.com/Rapptz"""
         await self.get_docs(ctx, 'neovim-plugins', obj)
-
-    @docs.command(name='pygame', aliases=['pg'])
-    async def pygame_docs(self, ctx, *, obj: str = None):
-        """Gives you a documentation link for a PyGame entity.
-        Props to github.com/Rapptz"""
-        await self.get_docs(ctx, 'pygame', obj)
-
-    @docs.command(name='aiohttp', aliases=["aio"])
-    async def aiohttp_docs(self, ctx, *, obj: str = None):
-        """Gives you a documentation link for a aiohttp entity.
-        Props to github.com/Rapptz"""
-        await self.get_docs(ctx, 'aiohttp', obj)
 
     @commands.command(passcontext=True)
     async def youtube(self, ctx, *, arg):
@@ -181,12 +166,12 @@ class Commands(commands.Cog):
 
     @commands.command()
     @commands.has_permissions(manage_messages=True)
-    async def clear(self, ctx, amount: int):
+    async def purge(self, ctx, amount: int):
         """Deletes messages (staff only)"""
         await ctx.channel.purge(limit=amount)
 
-    @clear.error
-    async def clear_error(self, ctx, error):
+    @purge.error
+    async def purge_error(self, ctx, error):
         if isinstance(error, commands.MissingRequiredArgument):
             await ctx.send('Please specify an amount of messages to delete.')
 
@@ -221,6 +206,21 @@ class Commands(commands.Cog):
         await channel.send(f"Welcome to Chris's Community {member.mention}")
         role = discord.utils.get(member.guild.roles, name="Verified")
         await member.add_roles(role)
+
+    @commands.command(name='website', aliases=['web'])
+    async def website(self, ctx):
+        """Get the link to Chris's website!"""
+        embed = discord.Embed(title="Chris's Website", description="[Visit the website!](https://www.chrisatmachine.com/)")
+        await ctx.message.delete()
+        await ctx.send(embed=embed)
+
+    @commands.command()
+    async def twitter(self, ctx):
+        """View Chris's Twitter"""
+        embed = discord.Embed(title="Chris's Twitter!",
+                              description="[View Chris's Twitter!](https://twitter.com/chrisatmachine)")
+        await ctx.message.delete()
+        await ctx.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(Commands(bot))
