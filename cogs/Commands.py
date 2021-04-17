@@ -197,7 +197,7 @@ class Commands(commands.Cog):
     @commands.Cog.listener()
     async def on_member_join(member):
         channel = discord.utils.get(member.guild.channels, name="welcomes")
-        await channel.send(f"Welcome to Mohnish's Community {member.mention}")
+        await channel.send(f"Welcome to Chris's Community {member.mention}")
         role = discord.utils.get(member.guild.roles, name="Verified")
         await member.add_roles(role)
 
