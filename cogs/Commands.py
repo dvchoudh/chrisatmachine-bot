@@ -1,6 +1,9 @@
 import discord
 import re
 from discord.ext import commands
+from datetime import datetime
+from typing import Optional
+from discord import Embed, Member
 import requests
 import random
 
@@ -132,27 +135,6 @@ class Commands(commands.Cog):
         await ctx.message.delete()
         await ctx.send("{}" .format(msg))
         
-    @commands.command()
-    async def info(self, ctx, member: discord.Member=None):
-        """User info"""
-        member = ctx.author if not member else member
-        roles = [role for role in member.roles if role.name != "@everyone"]
-        
-        create_date = member.created_at.strftime("%B %#d, %Y, %I:%M:%S %p ")
-        join_date = member.joined_at.strftime("%B %#d, %Y, %I:%M:%S %p")
-        values = []
-        values.append(f"\n**Account created on**: {create_date}")
-        values.append(f"\n**Joined server on**: {join_date}")
-        values.append(f"\n**Roles [{len(roles)}]**: " + " ".join([role.mention for role in roles]))
-        values.append(f"\n**Bot**: {member.bot}")
-        
-        userinfo = discord.Embed(title=f"**{member.display_name}**", colour=discord.Colour.dark_magenta(), timestamp=ctx.message.created_at,
-        description=" ".join(values))
-        userinfo.set_author(name=f"User Info - {member}", icon_url=member.avatar_url)
-        userinfo.set_thumbnail(url=member.avatar_url)
-        userinfo.set_footer(text=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
-        
-        
     @commands.command(aliases=["av"])
     async def avatar(self, ctx, member: commands.MemberConverter = None):
         """What's your profile pic?"""
@@ -163,6 +145,31 @@ class Commands(commands.Cog):
         embed.set_image(url=member.avatar_url)
         await ctx.send(embed=embed)
 
+    @commands.command(name="info", aliases=["memberinfo", "user_info"])
+    async def info(self, ctx, target: Optional[Member]):
+            """User info"""
+            target = target or ctx.author
+
+            embed = Embed(title="User information",
+                        colour=target.colour,
+                        timestamp=datetime.utcnow())
+
+            embed.set_thumbnail(url=target.avatar_url)
+
+            fields = [("Name", str(target), True),
+                    ("ID", target.id, True),
+                    ("Bot?", target.bot, True),
+                    ("Top role", target.top_role.mention, True),
+                    ("Status", str(target.status).title(), True),
+                    ("Activity", f"{str(target.activity.type).split('.')[-1].title() if target.activity else 'N/A'} {target.activity.name if target.activity else ''}", True),
+                    ("Created at", target.created_at.strftime("%d/%m/%Y %H:%M:%S"), True),
+                    ("Joined at", target.joined_at.strftime("%d/%m/%Y %H:%M:%S"), True),
+                    ("Boosted", bool(target.premium_since), True)]
+
+            for name, value, inline in fields:
+                embed.add_field(name=name, value=value, inline=inline)
+
+            await ctx.send(embed=embed)
 
     @commands.command()
     @commands.has_permissions(manage_messages=True)

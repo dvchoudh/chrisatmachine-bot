@@ -91,14 +91,6 @@ class Moderation(commands.Cog):
                 await ctx.send(f'Unbanned {user.mention}')
                 return
 
-    @commands.Cog.listener()
-    async def on_message_delete(self, message):
-        embed = discord.Embed(title="Message Deleted", color=0xf40000)
-        embed.add_field(name="Before", value=f"{message.content}: was Deleted!", inline=False)
-        bot_logs = '755669734690652271'
-        channel = message.guild.get_channel(755669734690652271)  # bot_logs must be an integer id
-        await channel.send(discord.Object(id=bot_logs), embed=embed)
-
     @commands.command(name="mute")
     @commands.has_permissions(ban_members=True)
     async def mute(self, ctx, member: discord.Member, *, reason=None):
