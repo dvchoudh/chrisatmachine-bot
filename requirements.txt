@@ -62,10 +62,7 @@ six==1.15.0
 soupsieve==2.0.1
 sqlparse==0.4.1
 tensorboard==1.14.0
-tensorflow==1.14.0
-tensorflow-estimator==1.14.0
 termcolor==1.1.0
-tflearn==0.3.2
 toml==0.10.2
 tqdm==4.50.2
 typed-ast==1.4.2
