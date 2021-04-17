@@ -25,6 +25,9 @@ class Commands(commands.Cog):
         page_types = {
             'latest': 'https://discordpy.readthedocs.io/en/latest',
             'python': 'https://docs.python.org/3',
+            'lua': 'https://www.lua.org/docs.html',
+            'neovim': 'https://neovim.io/doc/user/',
+            'neovim-plugins': 'https://github.com/rockerBOO/awesome-neovim',
             'pygame': 'https://www.pygame.org/docs',
             'aiohttp': 'https://docs.aiohttp.org/en/stable'
         }
@@ -78,6 +81,24 @@ class Commands(commands.Cog):
         Props to github.com/Rapptz"""
         await self.get_docs(ctx, 'python', obj)
 
+    @docs.command(name='lua', aliases=['l'])
+    async def lua_docs(self, ctx, *, obj: str = None):
+        """Gives you a documentation link for a Lua entity.
+        Props to github.com/Rapptz"""
+        await self.get_docs(ctx, 'lua', obj)
+
+    @docs.command(name='neovim', aliases=['nvim'])
+    async def neovim_docs(self, ctx, *, obj: str = None):
+        """Gives you a documentation link for a Neovim entity.
+        Props to github.com/Rapptz"""
+        await self.get_docs(ctx, 'neovim', obj)
+
+    @docs.command(name='neovim-plugins', aliases=['nvim-plugins'])
+    async def neovim_plugins(self, ctx, *, obj: str = None):
+        """Gives you a documentation link for a Neovim-plugins entity.
+        Props to github.com/Rapptz"""
+        await self.get_docs(ctx, 'neovim-plugins', obj)
+
     @docs.command(name='pygame', aliases=['pg'])
     async def pygame_docs(self, ctx, *, obj: str = None):
         """Gives you a documentation link for a PyGame entity.
@@ -114,11 +135,11 @@ class Commands(commands.Cog):
         msg = await ctx.send(embed=em)
         await msg.add_reaction('👍')
         await msg.add_reaction('👎')
-        
+
     @commands.command()
-    async def users(self, ctx):
+    async def members(self, ctx):
         """Shows how many members are in this server"""
-        await ctx.send(f"```Number of members: {ctx.guild.member_count}```")
+        await ctx.send(f"```Members: {ctx.guild.member_count}```")
 
     @commands.command()
     async def say(self, ctx, *, msg):
