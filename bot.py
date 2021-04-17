@@ -9,7 +9,7 @@ import asyncio
 client = commands.Bot(command_prefix=['c@m ', 'C@m ', 'c@M ', 'C@M '])
 
 
-extensions = ['cogs.Commands', 'cogs.Moderation']
+extensions = ['cogs.Commands', 'cogs.Moderation', 'cogs.Polls']
 
 if __name__ == '__main__':
     for e in extensions:

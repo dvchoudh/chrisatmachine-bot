@@ -9,6 +9,87 @@ class Commands(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    async def build_docs_lookup_table(self, page_types):
+        cache = {}
+        for key, page in page_types.items():
+            async with self.bot.session.get(page + '/objects.inv') as resp:
+                if resp.status != 200:
+                    raise RuntimeError('Cannot build docs lookup table, try again later.')
+
+                stream = SphinxObjectFileReader(await resp.read())
+                cache[key] = parse_object_inv(stream, page)
+
+        self._docs_cache = cache
+
+    async def get_docs(self, ctx, key, obj):
+        page_types = {
+            'latest': 'https://discordpy.readthedocs.io/en/latest',
+            'python': 'https://docs.python.org/3',
+            'pygame': 'https://www.pygame.org/docs',
+            'aiohttp': 'https://docs.aiohttp.org/en/stable'
+        }
+
+        if obj is None:
+            await ctx.send(page_types[key])
+            return
+
+        if self._docs_cache is None:
+            await self.build_docs_lookup_table(page_types)
+
+        obj = re.sub(r'^(?:discord\.(?:ext\.)?)?(?:commands\.)?(.+)', r'\1', obj)
+
+        if key.startswith('latest'):
+            q = obj.lower()  # point the abc.Messageable types properly:
+            for name in dir(discord.abc.Messageable):
+                if name[0] == '_':
+                    continue
+                if q == name:
+                    obj = f'abc.Messageable.{name}'
+                    break
+
+        cache = list(self._docs_cache[key].items())
+
+        matches = finder(obj, cache, key=lambda t: t[0], lazy=False)[:8]
+
+        if len(matches) == 0:
+            return await ctx.send('Could not find anything. Sorry.')
+
+        e = discord.Embed(colour=discord.Colour.blue())
+
+        author = {
+            "latest": "discord.py",
+            "python": "python",
+            "pygame": "pygame"
+        }.get(key, key)
+
+        e.set_author(name=f"{author} docs result", url=page_types.get(key, 'unknown'))
+        e.description = '\n'.join(f'[`{key}`]({url})' for key, url in matches)
+        await ctx.send(embed=e)
+
+    @commands.group(invoke_without_command=True)
+    async def docs(self, ctx, *, obj: str = None):
+        """Outputs a documentation link for a discord.py entity, and many others."""
+        if ctx.invoked_subcommand is None:
+            await self.get_docs(ctx, 'latest', obj)
+
+    @docs.command(name='python', aliases=['py'])
+    async def python_docs(self, ctx, *, obj: str = None):
+        """Gives you a documentation link for a Python entity.
+        Props to github.com/Rapptz"""
+        await self.get_docs(ctx, 'python', obj)
+
+    @docs.command(name='pygame', aliases=['pg'])
+    async def pygame_docs(self, ctx, *, obj: str = None):
+        """Gives you a documentation link for a PyGame entity.
+        Props to github.com/Rapptz"""
+        await self.get_docs(ctx, 'pygame', obj)
+
+    @docs.command(name='aiohttp', aliases=["aio"])
+    async def aiohttp_docs(self, ctx, *, obj: str = None):
+        """Gives you a documentation link for a aiohttp entity.
+        Props to github.com/Rapptz"""
+        await self.get_docs(ctx, 'aiohttp', obj)
+
     @commands.command(passcontext=True)
     async def youtube(self, ctx, *, arg):
         """Search YouTube"""
@@ -24,13 +105,15 @@ class Commands(commands.Cog):
             # print(payload)
             await ctx.send(f"> Here is your result for: {query}\n{payload}")
         
-    @commands.command()
-    async def poll(self, ctx, *, message):
-        """Creates a poll"""
-        embd = discord.Embed(title=f"Poll created by {ctx.author}", description=f"{message}")
-        msg = await ctx.channel.send(embed=embd)
-        await msg.add_reaction("👍")
-        await msg.add_reaction("👎")
+    @commands.command(name="suggest")
+    async def suggestion(self, ctx, *, suggestion: str):
+        """Make a poll/suggestion"""
+        await ctx.message.delete()
+        em = discord.Embed(description=suggestion)
+        em.set_author(name=f"Poll by {ctx.author.display_name}", icon_url=ctx.author.avatar_url)
+        msg = await ctx.send(embed=em)
+        await msg.add_reaction('👍')
+        await msg.add_reaction('👎')
         
     @commands.command()
     async def users(self, ctx):
