@@ -18,4 +18,4 @@ async def on_ready():
     print("Bot is live!")
 
 
-client.run('Your BOT Token')
+client.run(os.getenv('TOKEN'))
