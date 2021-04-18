@@ -1,11 +1,5 @@
 import discord
 from discord.ext import commands
-from discord.ext.commands import Bot
-import datetime
-import random
-from random import randint
-import os
-import asyncio
 client = commands.Bot(command_prefix=['c@m ', 'C@m ', 'c@M ', 'C@M '])
 
 
