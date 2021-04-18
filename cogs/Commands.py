@@ -207,12 +207,16 @@ class Commands(commands.Cog):
                      'Very doubtful.']
         await ctx.send(f'Question: {question}\nAnswer: {random.choice(responses)}')
 
-    @commands.Cog.listener()
-    async def on_member_join(member):
-        channel = discord.utils.get(member.guild.channels, name="welcomes")
-        await channel.send(f"Welcome to Chris's Community {member.mention}")
-        role = discord.utils.get(member.guild.roles, name="Verified")
-        await member.add_roles(role)
+    @commands.command()
+    async def source(self, ctx, *, command: str = None):
+        """Get source code for the bot."""
+        base_url = "https://github.com/Binx-Codes/chrisatmachine-discord-bot"
+
+        if command is None:
+            return await ctx.send(base_url)
+        cmd = self.bot.get_command(command)
+
+        url = self.get_github_link(base_url=base_url, branch='master', command=command)
 
     @commands.command(name='website', aliases=['web'])
     async def website(self, ctx):
