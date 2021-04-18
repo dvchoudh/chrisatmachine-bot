@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+import os
 client = commands.Bot(command_prefix=['c@m ', 'C@m ', 'c@M ', 'C@M '])
 
 
@@ -17,4 +18,4 @@ async def on_ready():
     print("Bot is live!")
 
 
-client.run('NzQ3NzI1NTM4MzAyNDkyNzc0.X0TDrA.s8F55aQxra8vLyJqD7pEKqNdU2I')
+client.run(os.getenv(TOKEN))
