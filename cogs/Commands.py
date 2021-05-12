@@ -161,7 +161,6 @@ class Commands(commands.Cog):
                     ("Bot?", target.bot, True),
                     ("Top role", target.top_role.mention, True),
                     ("Status", str(target.status).title(), True),
-                    ("Activity", f"{str(target.activity.type).split('.')[-1].title() if target.activity else 'N/A'} {target.activity.name if target.activity else ''}", True),
                     ("Created at", target.created_at.strftime("%d/%m/%Y %H:%M:%S"), True),
                     ("Joined at", target.joined_at.strftime("%d/%m/%Y %H:%M:%S"), True),
                     ("Boosted", bool(target.premium_since), True)]
@@ -221,14 +220,23 @@ class Commands(commands.Cog):
     @commands.command(name='website', aliases=['web'])
     async def website(self, ctx):
         """Get the link to Chris's website!"""
-        embed = discord.Embed(title="Chris's Website", description="[Visit the website!](https://www.chrisatmachine.com/)")
+        embed = discord.Embed(title="Chris's Website",
+                              description="[Visit the website!](https://www.chrisatmachine.com/)")
+        await ctx.message.delete()
+        await ctx.send(embed=embed)
+
+    @commands.command()
+    async def matrix(self, ctx):
+        """View Chris's Matrix Community"""
+        embed = discord.Embed(title="Chris's Matrix Community",
+                              description="[View Chris's Matrix Community!](https://matrix.to/#/+atmachine:matrix.org)")
         await ctx.message.delete()
         await ctx.send(embed=embed)
 
     @commands.command()
     async def twitter(self, ctx):
         """View Chris's Twitter"""
-        embed = discord.Embed(title="Chris's Twitter!",
+        embed = discord.Embed(title="Chris's Twitter",
                               description="[View Chris's Twitter!](https://twitter.com/chrisatmachine)")
         await ctx.message.delete()
         await ctx.send(embed=embed)
