@@ -8,9 +8,11 @@ const { setCooldown } = require("../../utils/utils");
  */
 module.exports = {
   name: "docs",
-  category: "Docs",
-  aliases: ["d"],
+  category: "LunarVim-Docs",
+  aliases: ["documentation", "d"],
   clientPerms: ["SEND_MESSAGES"],
+  description: "Command for viewing the documentation of LunarVim",
+  usage: "c@m docs install",
 
   execute: async function ({ client, message, args }) {
     const search_query = args.join(" ");
@@ -20,9 +22,8 @@ module.exports = {
         .setTitle("LunarVim Installation")
         .setURL(install_link)
         .setDescription(
-          "LunarVim is a powerful and easy to use text editor for programmers. It is written in javascript and is available for Windows, Linux and macOS.\n\n**[Download LunarVim](https://www.lunarvim.org/01-installing.html#stable)**"
+          "LunarVim is an IDE layer for Neovim 0.5 taking advantage of new advancements in Lua scripting such as Treesitter and the Language Server Protocol. LunarVim is opinionated, extensible and fast.\n\n**[Download LunarVim](https://www.lunarvim.org/01-installing.html#stable)**"
         )
-        .setThumbnail(install_link)
         .setColor(0x00ff00);
       message.channel.send({ embed });
     }

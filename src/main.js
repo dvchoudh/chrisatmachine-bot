@@ -13,9 +13,12 @@ const player = new Player(client);
 client.player = player;
 
 client.on("ready", () => {
-  client.user.setActivity("Chris", {
-    type: "STREAMING",
-    url: "https://www.twitch.tv/chrisatmachine",
+  client.user.setPresence({
+    status: "dnd",
+    activity: {
+      name: " the prefix c@m | c@m help",
+      type: "PLAYING",
+    },
   });
 });
 

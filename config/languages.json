@@ -28,7 +28,8 @@
           "No category": "No category",
           "Fun": "Fun",
           "Music": "Music", 
-          "Docs": "Docs"
+          "Docs": "Docs", 
+          "LunarVim-Docs": "LunarVim-Docs"
         }
       }
     },
