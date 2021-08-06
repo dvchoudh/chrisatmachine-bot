@@ -5,7 +5,7 @@ const { registerCommands, registerEvents } = require("./utils/registry");
 const { log } = require("./utils/utils");
 const { Player } = require("discord-player");
 const fs = require("fs");
-require('discord-reply');
+require("discord-reply");
 const client = new discord.Client({ ws: { intents: discord.Intents.ALL } });
 
 const player = new Player(client);
@@ -13,12 +13,10 @@ const player = new Player(client);
 client.player = player;
 
 client.on("ready", () => {
-  client.user
-    .setPresence({
-      type: "WATCHING",
-      activity: { name: "new bot" },
-      status: "dnd",
-    })
+  client.user.setActivity("Chris", {
+    type: "STREAMING",
+    url: "https://www.twitch.tv/chrisatmachine",
+  });
 });
 
 (async () => {
@@ -90,50 +88,26 @@ client.on("ready", () => {
   );
 })();
 
-/*const playerfile = fs.readdirSync('./src/player').filter(file => file.endsWith('.js'));
+client.player.on("trackStart", (message, track) =>
+  message.channel.send(`Now playing ${track.title}...`)
+);
 
-for (const file of playerfile) {
-    console.log(`Loading discord-player event ${file}`);
-    const eventfile = require(`./src/player/${file}`);
-    client.player.on(file.split(".")[0], eventfile.bind(null, client));
-};*/
-
-client.player.on("trackStart", (message, track) => message.channel.send(`Now playing ${track.title}...`))
-
-/*client.on ('ready', () => {
-
-})*/
-
-/*client.on('message', message => {
-if (message.channel.name === "chad-bot" && !message.author.bot) {
-    message.delete({ timeout: 1000 });
-    const member = message.author;
-    message.channel.createWebhook(member.username, {
-        avatar: member.displayAvatarURL({ dynamic: true })
-    }).then(webhook => {
-        webhook.send(message.content)
-        setTimeout(() => {
-            webhook.delete()
-        }, 3000)
-    })
-}
-})*/
-const fetch = require('node-fetch');
-const Schema = require('../schemas/chatbot-channel');
-client.on("message", async(message) => {
-  if(!message.guild || message.author.bot) return;
-  Schema.findOne({ Guild: message.guild.id }, async(err, data) => {
-      if(!data) return;
-      if(message.channel.id !== data.Channel) return;
-      fetch(
-          `https://api.monkedev.com/fun/chat?msg=${encodeURIComponent(
-            message.content
-          )}&uid=0101`
-        )
-          .then((res) => res.json())
-          .then(async (json) => {
-            return await message.lineReply(json.response);
-          });
-      //chatbot(message, message.channel, message.author.id);
-  });
-});
+const fetch = require("node-fetch");
+const Schema = require("../schemas/chatbot-channel");
+// client.on("message", async (message) => {
+//   if (!message.guild || message.author.bot) return;
+//   Schema.findOne({ Guild: message.guild.id }, async (err, data) => {
+//     if (!data) return;
+//     if (message.channel.id !== data.Channel) return;
+//     fetch(
+//       `https://api.monkedev.com/fun/chat?msg=${encodeURIComponent(
+//         message.content
+//       )}&uid=0101`
+//     )
+//       .then((res) => res.json())
+//       .then(async (json) => {
+//         return await message.lineReply(json.response);
+//       });
+//     //chatbot(message, message.channel, message.author.id);
+//   });
+// });
