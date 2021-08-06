@@ -1,4 +1,8 @@
 {
-  "BOT_TOKEN": "", 
-  "PREFIX": ""
+  "TOKEN": "", 
+  "PREFIX": "",
+  "MONGODB_URI": "",
+  "SRA_KEY": "",
+  "devs": [],
+  "someServers": []
 }
