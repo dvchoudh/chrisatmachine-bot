@@ -27,6 +27,7 @@
     "@discordjs/opus": "^0.5.3",
     "discord-player": "^4.1.4",
     "discord-reply": "^0.1.2",
+    "discord-tictactoe": "^2.1.1",
     "discord.js": "^12.5.3",
     "ffmpeg-static": "^4.4.0",
     "got": "^11.8.2",
