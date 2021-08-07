@@ -10,7 +10,7 @@ const ytsr = require("ytsr");
 module.exports = {
   name: "youtube",
   category: "Socials",
-  aliases: ["ty"],
+  aliases: ["yt"],
   clientPerms: ["SEND_MESSAGES"],
 
   execute: async function ({ client, message, args }) {
