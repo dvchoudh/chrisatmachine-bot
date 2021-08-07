@@ -70,15 +70,6 @@ client.on("ready", () => {
   }
 
   try {
-    // client.user.setStatus("online");
-    // client.user.setActivity({
-    //   game: {
-    //     name: "I am Chad",
-    //     type: "CUSTOM_STATUS",
-    //     url: "https://discordapp.com/",
-    //   },
-    // });
-
     await client.login(process.env.TOKEN);
     log("SUCCESS", "src/main.js", `Logged in as ${client.user.tag}`);
   } catch (e) {
@@ -95,23 +86,3 @@ client.on("ready", () => {
 client.player.on("trackStart", (message, track) =>
   message.channel.send(`Now playing ${track.title}...`)
 );
-
-const fetch = require("node-fetch");
-const Schema = require("../schemas/chatbot-channel");
-// client.on("message", async (message) => {
-//   if (!message.guild || message.author.bot) return;
-//   Schema.findOne({ Guild: message.guild.id }, async (err, data) => {
-//     if (!data) return;
-//     if (message.channel.id !== data.Channel) return;
-//     fetch(
-//       `https://api.monkedev.com/fun/chat?msg=${encodeURIComponent(
-//         message.content
-//       )}&uid=0101`
-//     )
-//       .then((res) => res.json())
-//       .then(async (json) => {
-//         return await message.lineReply(json.response);
-//       });
-//     //chatbot(message, message.channel, message.author.id);
-//   });
-// });
