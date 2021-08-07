@@ -1,0 +1,42 @@
+{
+  "name": "chrisatmachine-discord-bot",
+  "version": "1.0.0",
+  "description": "A Discord Bot made for Chris' Discord server.",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node bot.js",
+    "dev": "nodemon bot.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KittyBorgX/chrisatmachine-discord-bot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KittyBorgX/chrisatmachine-discord-bot/issues"
+  },
+  "homepage": "https://github.com/KittyBorgX/chrisatmachine-discord-bot#readme",
+  "engines": {
+    "node": "14.17.3",
+    "npm": "6.14.13"
+  },
+  "dependencies": {
+    "@discordjs/opus": "^0.5.3",
+    "discord-player": "^4.1.4",
+    "discord-reply": "^0.1.2",
+    "discord-tictactoe": "^2.1.1",
+    "discord.js": "^12.5.3",
+    "dotenv": "^10.0.0",
+    "ffmpeg-static": "^4.4.0",
+    "got": "^11.8.2",
+    "mongoose": "^5.13.5",
+    "ms": "^2.1.3",
+    "node-fetch": "^2.6.1",
+    "opusscript": "^0.0.8",
+    "sourcebin": "^4.2.5",
+    "ytsr": "^3.5.2"
+  }
+}
