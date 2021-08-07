@@ -29,6 +29,7 @@
     "discord-reply": "^0.1.2",
     "discord-tictactoe": "^2.1.1",
     "discord.js": "^12.5.3",
+    "dotenv": "^10.0.0",
     "ffmpeg-static": "^4.4.0",
     "got": "^11.8.2",
     "mongoose": "^5.13.5",
