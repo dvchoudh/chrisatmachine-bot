@@ -1,6 +1,7 @@
+require("dotenv").config();
 const discord = require("discord.js");
 const mongoose = require("mongoose");
-const config = require("../config/config.json");
+
 const { registerCommands, registerEvents } = require("./utils/registry");
 const { log } = require("./utils/utils");
 const { Player } = require("discord-player");
@@ -39,7 +40,7 @@ client.on("ready", () => {
   await registerCommands(client, "../commands");
 
   try {
-    await mongoose.connect(config.MONGODB_URI, {
+    await mongoose.connect(process.env.MONGODB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useFindAndModify: false,
@@ -78,7 +79,7 @@ client.on("ready", () => {
     //   },
     // });
 
-    await client.login(config.TOKEN);
+    await client.login(process.env.TOKEN);
     log("SUCCESS", "src/main.js", `Logged in as ${client.user.tag}`);
   } catch (e) {
     log("ERROR", "src/main.js", `Error logging in: ${e.message}`);
