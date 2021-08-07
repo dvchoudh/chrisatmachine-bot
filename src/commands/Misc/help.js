@@ -95,11 +95,11 @@ module.exports = {
       if (aliases.length > 0)
         hEmbed.addField(languageHelp.aliases, "`" + aliases.join("`, `") + "`");
 
-      if (commandHelp.examples)
-        hEmbed.addField(
-          languageHelp.examples,
-          replacePrefix(commandHelp.examples, guildPrefix)
-        );
+      // if (commandHelp.examples)
+      //   hEmbed.addField(
+      //     languageHelp.examples,
+      //     replacePrefix(commandHelp.examples, guildPrefix)
+      //   );
 
       let cd = getCooldown(client, command, message);
       if (cd) hEmbed.addField(languageHelp.cooldown, `${msToTime(cd * 1000)}`);

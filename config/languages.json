@@ -30,7 +30,8 @@
           "Music": "Music", 
           "Docs": "Docs", 
           "LunarVim-Docs": "LunarVim-Docs", 
-          "Socials": "Socials"
+          "Socials": "Socials", 
+          "Moderation": "Moderation"
         }
       }
     },
@@ -61,6 +62,16 @@
     "channels": {
       "description": "Check all the channels that will the bot will ignore and disable/enable them.",
       "usage": "- `PREFIXchannels` to display all currently disabled channels\n- `PREFIXchannels [disable/enable] [channel]` to disable/enable channels."
+    }, 
+    "twitter": {
+      "description": "Fetches the twitter of Chris",
+      "usage": "`PREFIXtwitter`"
+    }, 
+
+    "youtube": {
+      "description": "Search for a youtube song!",
+      "usage": "`PREFIXyoutube <song/video name>`", 
+      "examples" : ">youtube never gonna give you up"
     }
   }
 }

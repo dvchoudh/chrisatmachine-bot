@@ -11,6 +11,8 @@ module.exports = {
   category: "Socials",
   aliases: ["twit"],
   clientPerms: ["SEND_MESSAGES"],
+  description: "Sends a link to your Twitter profile.",
+  usage: ">ping",
 
   execute: async function ({ client, message, args }) {
     setCooldown(client, this, message);
