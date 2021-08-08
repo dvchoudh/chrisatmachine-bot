@@ -11,7 +11,7 @@ module.exports = {
   name: "setprefix",
   category: "Utility",
   aliases: ["sp"],
-  serverOwnerOnly: true,
+  // serverOwnerOnly: true,
   arguments: [
     {
       type: "SOMETHING",

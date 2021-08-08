@@ -12,9 +12,9 @@ const mongoURL = process.env.MONGODB_URI;
  * @type {import('../../typings.d').Command}
  */
 module.exports = {
-  name: "warn",
+  name: "hi",
   category: "Moderation",
-  aliases: ["w"],
+  aliases: ["s"],
   clientPerms: ["MANAGE_MESSAGES"],
 
   execute: async function ({ client, message, args }) {
@@ -36,7 +36,7 @@ module.exports = {
 
     await mongoose.connect(mongoURL).then(async (mongoose) => {
       try {
-        warnSchema.findOneAndUpdate(
+        await warnSchema.findOneAndUpdate(
           { Guild: message.guild.id },
           async (err, data) => {
             if (data) data.delete();
@@ -49,7 +49,7 @@ module.exports = {
           }
         );
       } finally {
-        // mongoose.connection.close();
+        mongoose.connection.close();
       }
     });
 

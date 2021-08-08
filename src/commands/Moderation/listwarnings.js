@@ -25,7 +25,7 @@ module.exports = {
     // }
 
     const guildId = message.guild.id;
-    const userId = goat.id || message.author.id;
+    const userId = message.member.id;
     const reason = args.slice(1).join(" ");
 
     const warning = {
@@ -36,24 +36,33 @@ module.exports = {
 
     await mongoose.connect(mongoURL).then(async (mongoose) => {
       try {
-        const results = warnSchema.findOne({
+        const results = await warnSchema.findOne({
           guildId,
           userId,
+          warning,
         });
+
+        if (typeof results === "undefined") {
+          return message.channel.send(`:x: | Undefined var`);
+        }
 
         const reply = new MessageEmbed()
           .setTitle(`Warnings for ${userId}`)
           .setColor("RED");
-        for (const warning of results.warnings) {
-          const { author, timestamp, reason } = warning;
-          reply.addField(
-            `By ${author}, on ${new Date(
-              timestamp
-            ).toLocaleDateString()}, for ${reason}`
-          );
-        }
 
-        message.channel.send(reply);
+        console.log(results);
+        // for (const warning of results.warnings) {
+        //   // @ts-ignore
+        //   // const { author, timestamp, reason } = warning;
+        //   // reply.addField(
+        //   //   `By ${author}, on ${new Date(
+        //   //     timestamp
+        //   //   ).toLocaleDateString()}, for ${reason}`
+        //   // );
+        //   console.log(warning);
+        // }
+
+        // message.channel.send(reply);
       } finally {
         // mongoose.connection.close();
       }
