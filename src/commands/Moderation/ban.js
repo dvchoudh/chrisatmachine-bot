@@ -1,5 +1,4 @@
 //@ts-check
-
 const { setCooldown } = require("../../utils/utils");
 const { MessageEmbed } = require("discord.js");
 /**

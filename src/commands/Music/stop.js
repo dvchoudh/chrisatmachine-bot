@@ -1,8 +1,8 @@
 //@ts-check
-
 /**
  * @type {import('../../typings.d').Command}
  */
+
 module.exports = {
   name: "stop",
   aliases: [""],

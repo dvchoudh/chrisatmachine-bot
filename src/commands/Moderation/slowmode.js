@@ -1,5 +1,4 @@
 //@ts-check
-
 const { MessageEmbed } = require("discord.js");
 const ytsr = require("ytsr");
 const { red } = require("../../../config/colors.json");
