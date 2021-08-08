@@ -20,7 +20,9 @@ module.exports = {
     // @ts-ignore
     if (!message.member.hasPermission("MANAGE_MEMBERS")) {
       const errorEmbed = new MessageEmbed()
-        .setDescription(`You do not have permission to run this command!`)
+        .setDescription(
+          `${message.author}, You do not have permission to run this command!`
+        )
         .setColor("RED");
       return message.channel.send(errorEmbed);
     }

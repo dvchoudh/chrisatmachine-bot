@@ -97,7 +97,9 @@ module.exports = async (client, message) => {
       })
     ) {
       const errorEmbed = new MessageEmbed()
-        .setDescription(`You do not have permission to run this command!`)
+        .setDescription(
+          `${message.author}, You do not have permission to run the command: ${command.name}`
+        )
         .setColor("RED");
       return message.channel.send(errorEmbed);
     } else if (
@@ -175,3 +177,5 @@ module.exports = async (client, message) => {
     log("ERROR", "src/eventHandlers/message.js", e.message);
   }
 };
+
+// module.exports = {};
