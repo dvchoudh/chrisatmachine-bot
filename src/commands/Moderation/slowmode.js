@@ -19,6 +19,12 @@ module.exports = {
 
   execute: async function ({ client, message, args }) {
     // @ts-ignore
+    if (!message.member.hasPermission("MANAGE_MEMBERS")) {
+      return message.channel.send(
+        "You do not have permission to change the slowmode!"
+      );
+    }
+    // @ts-ignore
     if (!args[0]) return message.reply("You must specify a time in seconds.");
     const time = parseInt(args[0]);
     if (isNaN(time))
