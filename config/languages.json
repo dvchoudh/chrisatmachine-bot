@@ -10,7 +10,7 @@
     },
     "help": {
       "description": "Get help on commands.",
-      "usage": "To get help on a specific command, use `PREFIXhelp [command name]` (without the [ ]).\nFor a full list of all commands, simply use `PREFIXhelp`.",
+      "usage": "To get help on a specific command, use `PREFIX help [command name]` (without the [ ]).\nFor a full list of all commands, simply use `PREFIXhelp`.",
       "examples": "`PREFIXhelp ping`",
       "names": {
         "usage": "Usage",
@@ -24,7 +24,7 @@
         "categoriesName": "Categories",
         "categories": {
           "Utility": "Utility",
-          "Misc": "Misc",
+          "Misc": "Misc", 
           "No category": "No category",
           "Fun": "Fun",
           "Music": "Music", 

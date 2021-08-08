@@ -1,5 +1,4 @@
 //@ts-check
-
 const { setCooldown } = require("../../utils/utils");
 const { MessageEmbed } = require("discord.js");
 /**
@@ -14,16 +13,22 @@ module.exports = {
   execute: async function ({ client, message, args }) {
     setCooldown(client, this, message);
     if (!message.member.hasPermission("KICK_MEMBERS")) {
-      return message.channel.send(
-        "You do not have permission to kick a member!"
-      );
+      const errorEmbed = new MessageEmbed()
+        .setDescription(`You do not have permission to run this command!`)
+        .setColor("RED");
+      return message.channel.send(errorEmbed);
     }
     let member = message.mentions.members.first();
     if (!member)
       return message.reply("Please specify a member for me to kick them");
     let reason = args.slice(1).join(" ");
     if (!reason) reason = "No Reason Given";
-    if (!member.kickable) return message.reply("This member is not kickable");
+    if (!member.kickable) {
+      const errorEmbed = new MessageEmbed()
+        .setDescription(`This member cannot be kicked`)
+        .setColor("RED");
+      return message.channel.send(errorEmbed);
+    }
     try {
       const sembed2 = new MessageEmbed()
         .setColor("RED")

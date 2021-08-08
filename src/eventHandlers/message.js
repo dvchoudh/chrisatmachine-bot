@@ -1,5 +1,4 @@
 //@ts-check
-
 require("dotenv").config();
 const {
   processArguments,
@@ -9,7 +8,7 @@ const {
   getCooldown,
   getGuildInfo,
 } = require("../utils/utils");
-const { Collection } = require("discord.js");
+const { Collection, MessageEmbed } = require("discord.js");
 const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 /**
@@ -97,14 +96,10 @@ module.exports = async (client, message) => {
         checkOwner: true,
       })
     ) {
-      return message.channel.send(
-        `${
-          message.author.username
-        }, you are missing the following permissions: ${missingPermissions(
-          message.member,
-          guildInfo.commandPerms[command.name]
-        )}`
-      );
+      const errorEmbed = new MessageEmbed()
+        .setDescription(`You do not have permission to run this command!`)
+        .setColor("RED");
+      return message.channel.send(errorEmbed);
     } else if (
       command.perms &&
       !message.member.hasPermission(command.perms, {

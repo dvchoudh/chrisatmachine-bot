@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "cd src && node main.js",
-    "dev": "nodemon bot.js"
+    "dev": "cd src && nodemon main.js"
   },
   "repository": {
     "type": "git",
@@ -17,7 +17,7 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/KittyBorgX/chrisatmachine-discord-bot/issues"
-  },
+  },  
   "homepage": "https://github.com/KittyBorgX/chrisatmachine-discord-bot#readme",
   "engines": {
     "node": "14.17.3",

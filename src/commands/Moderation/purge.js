@@ -18,9 +18,10 @@ module.exports = {
     setCooldown(client, this, message);
     // @ts-ignore
     if (!message.member.hasPermission("MANAGE_MEMBERS")) {
-      return message.channel.send(
-        "You do not have permission to delete messages!"
-      );
+      const errorEmbed = new MessageEmbed()
+        .setDescription(`You do not have permission to run this command!`)
+        .setColor("RED");
+      return message.channel.send(errorEmbed);
     }
     // const args = message.content.split(' ').slice(1); // All arguments behind the command name with the prefix
     const amount = parseInt(args.join(" ")); // Amount of messages which should be deleted
