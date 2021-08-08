@@ -13,6 +13,11 @@ module.exports = {
 
   execute: async function ({ client, message, args }) {
     setCooldown(client, this, message);
+    if (!message.member.hasPermission("KICK_MEMBERS")) {
+      return message.channel.send(
+        "You do not have permission to kick a member!"
+      );
+    }
     let member = message.mentions.members.first();
     if (!member)
       return message.reply("Please specify a member for me to kick them");

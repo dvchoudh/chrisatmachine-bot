@@ -16,6 +16,12 @@ module.exports = {
 
   execute: async function ({ client, message, args }) {
     setCooldown(client, this, message);
+    // @ts-ignore
+    if (!message.member.hasPermission("MANAGE_MEMBERS")) {
+      return message.channel.send(
+        "You do not have permission to delete messages!"
+      );
+    }
     // const args = message.content.split(' ').slice(1); // All arguments behind the command name with the prefix
     const amount = parseInt(args.join(" ")); // Amount of messages which should be deleted
     if (!amount)
