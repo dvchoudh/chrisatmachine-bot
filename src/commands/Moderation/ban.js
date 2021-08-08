@@ -25,7 +25,12 @@ module.exports = {
     // @ts-ignore
     let reason = args.slice(1).join(" ");
     if (!reason) reason = "No Reason Given";
-    if (!member.bannable) return message.reply("This member is not Bannable!");
+    if (!member.bannable) {
+      const errorEmbed = new MessageEmbed()
+        .setDescription(`This member cannot be banned`)
+        .setColor("RED");
+      return message.channel.send(errorEmbed);
+    }
     try {
       const sembed2 = new MessageEmbed()
         .setColor("RED")

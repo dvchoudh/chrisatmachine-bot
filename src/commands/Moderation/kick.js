@@ -24,7 +24,12 @@ module.exports = {
       return message.reply("Please specify a member for me to kick them");
     let reason = args.slice(1).join(" ");
     if (!reason) reason = "No Reason Given";
-    if (!member.kickable) return message.reply("This member is not kickable");
+    if (!member.kickable) {
+      const errorEmbed = new MessageEmbed()
+        .setDescription(`This member cannot be kicked`)
+        .setColor("RED");
+      return message.channel.send(errorEmbed);
+    }
     try {
       const sembed2 = new MessageEmbed()
         .setColor("RED")
