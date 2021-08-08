@@ -1,7 +1,7 @@
 //@ts-check
 const Discord = require("discord.js");
 const fetch = require("node-fetch");
-const Schema = require('../../../schemas/chatbot-channel')
+const Schema = require("../../../schemas/chatbot-channel");
 /**
  * @type {import('../../typings.d').Command}
  */
@@ -25,22 +25,23 @@ module.exports = {
   arguments: [],
 
   execute: async function ({ client, message, args, flags }) {
-    if(args[0] === 'remove'){
+    if (args[0] === "remove") {
       Schema.findOne({ Guild: message.guild.id }, async (err, data) => {
         if (data) data.delete();
+        // @ts-ignore
         message.lineReply(`Deleted current chatbot channel`);
-      })
+      });
     } else {
       const channel = message.mentions.channels.first() || message.channel;
-    Schema.findOne({ Guild: message.guild.id }, async (err, data) => {
-      if (data) data.delete();
-      new Schema({
-        Guild: message.guild.id,
-        Channel: channel.id,
-      }).save();
-      message.lineReply(`Saved chatbot channel to ${channel}`);
-    })
+      Schema.findOne({ Guild: message.guild.id }, async (err, data) => {
+        if (data) data.delete();
+        new Schema({
+          Guild: message.guild.id,
+          Channel: channel.id,
+        }).save();
+        // @ts-ignore
+        message.lineReply(`Saved chatbot channel to ${channel}`);
+      });
     }
-    
   },
 };
