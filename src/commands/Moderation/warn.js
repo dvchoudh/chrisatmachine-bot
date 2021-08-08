@@ -12,9 +12,9 @@ const mongoURL = process.env.MONGODB_URI;
  * @type {import('../../typings.d').Command}
  */
 module.exports = {
-  name: "hi",
+  name: "warn",
   category: "Moderation",
-  aliases: ["s"],
+  aliases: ["w"],
   clientPerms: ["MANAGE_MESSAGES"],
 
   execute: async function ({ client, message, args }) {
