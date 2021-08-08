@@ -17,14 +17,11 @@ module.exports = {
   execute: async function ({ client, message, args }) {
     setCooldown(client, this, message);
     const embed = new MessageEmbed()
-      .setTitle(`Chris's Twitter`)
       .setDescription(
-        "[View Chris's twitter](https://twitter.com/chrisatmachine)"
+        "[View Chris' twitter](https://twitter.com/chrisatmachine)"
       )
       .setColor(red);
 
     message.channel.send({ embed });
   },
 };
-
-//https://matrix.to/#/+atmachine:matrix.org

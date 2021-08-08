@@ -17,7 +17,7 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/KittyBorgX/chrisatmachine-discord-bot/issues"
-  },  
+  },
   "homepage": "https://github.com/KittyBorgX/chrisatmachine-discord-bot#readme",
   "engines": {
     "node": "14.17.3",

@@ -8,16 +8,16 @@ const { red } = require("../../../config/colors.json");
  * @type {import('../../typings.d').Command}
  */
 module.exports = {
-  name: "matrix",
+  name: "github",
   category: "Socials",
-  aliases: ["mat"],
+  aliases: ["gh"],
   clientPerms: ["SEND_MESSAGES"],
 
   execute: async function ({ client, message, args }) {
     setCooldown(client, this, message);
     const embed = new MessageEmbed()
       .setDescription(
-        "[View Chris's Matrix Community!](https://matrix.to/#/+atmachine:matrix.org)"
+        "[View Chris' GitHub](https://github.com/ChristianChiarulli)"
       )
       .setColor(red);
 
