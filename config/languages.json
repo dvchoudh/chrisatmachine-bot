@@ -41,7 +41,7 @@
     },
     "ping": {
       "description": "Get the bots current ping.",
-      "usage": "`PREFIXping`"
+      "usage": "`PREFIX ping`"
     },
     "setprefix": {
       "description": "Set a new prefix for your server.",
@@ -57,8 +57,9 @@
     },
     "setcolor": {
       "description": "Set your own embed color.",
-      "usage": "- `PREFIXssetcolor` to view your color and all available colors\n- `PREFIXsetcolor [new color]` to set your color"
+      "usage": "- `PREFIXsetcolor` to view your color and all available colors\n- `PREFIXsetcolor [new color]` to set your color"
     },
+
     "channels": {
       "description": "Check all the channels that will the bot will ignore and disable/enable them.",
       "usage": "- `PREFIXchannels` to display all currently disabled channels\n- `PREFIXchannels [disable/enable] [channel]` to disable/enable channels."
@@ -68,10 +69,49 @@
       "usage": "`PREFIXtwitter`"
     }, 
 
+    "matrix": {
+      "description": "Fetches the matrix of Chris",
+      "usage": "PREFIXmatrix"
+    },
+
     "youtube": {
+      "description": "Fetches the youtube of Chris",
+      "usage": "PREFIXmatrix"
+    },
+
+    "youtubesearch": {
       "description": "Search for a youtube song!",
       "usage": "`PREFIXyoutube <song/video name>`", 
       "examples" : ">youtube never gonna give you up"
+    }, 
+
+    "ban": {
+      "description": "Ban a member [MODERATOR ONLY]",
+      "usage": "`PREFIXban <@member> <reason>"
+    },
+    "kick": {
+      "description": "Kick a member [MODERATOR ONLY]",
+      "usage": "`PREFIXkick <@member> <reason>"
+    },
+    "slowmode": {
+      "description": "Change the slowmode [MODERATOR ONLY]",
+      "usage": "`PREFIXsm <time in seconds>"
+    },
+    "purge": {
+      "description": "Bulk Delete Messages [MODERATOR ONLY]",
+      "usage": "`PREFIXpurge <number of messages>"
+    }, 
+    "meme": {
+      "description": "Gets a meme from reddit",
+      "usage": "`PREFIXmeme"
+    }, 
+    "sourcebin": {
+      "description": "Makes a sourcebin file for the code given",
+      "usage": "`PREFIXsourcebin"
+    }, 
+    "ttt": {
+      "description": "AI Tic Tac Toe!",
+      "usage": "`PREFIXttt"
     }
   }
 }

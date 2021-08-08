@@ -51,7 +51,7 @@ module.exports = {
   name: "permissions",
   category: "Utility",
   aliases: ["p"],
-  serverOwnerOnly: true,
+  serverOwnerOnly: false,
   arguments: [
     {
       type: "SOMETHING",

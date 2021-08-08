@@ -14,7 +14,9 @@ module.exports = {
     setCooldown(client, this, message);
     if (!message.member.hasPermission("KICK_MEMBERS")) {
       const errorEmbed = new MessageEmbed()
-        .setDescription(`You do not have permission to run this command!`)
+        .setDescription(
+          `${message.author}, You do not have permission to run this command!`
+        )
         .setColor("RED");
       return message.channel.send(errorEmbed);
     }
