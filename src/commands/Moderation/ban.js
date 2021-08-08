@@ -14,9 +14,10 @@ module.exports = {
   execute: async function ({ client, message, args }) {
     setCooldown(client, this, message);
     if (!message.member.hasPermission("BAN_MEMBERS")) {
-      return message.channel.send(
-        "You do not have permission to kick a member!"
-      );
+      const errorEmbed = new MessageEmbed()
+        .setDescription(`You do not have permission to run this command!`)
+        .setColor("RED");
+      return message.channel.send(errorEmbed);
     }
     let member = message.mentions.members.first();
     if (!member)

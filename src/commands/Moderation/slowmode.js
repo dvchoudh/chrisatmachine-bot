@@ -20,9 +20,10 @@ module.exports = {
   execute: async function ({ client, message, args }) {
     // @ts-ignore
     if (!message.member.hasPermission("MANAGE_MEMBERS")) {
-      return message.channel.send(
-        "You do not have permission to change the slowmode!"
-      );
+      const errorEmbed = new MessageEmbed()
+        .setDescription(`You do not have permission to run this command!`)
+        .setColor("RED");
+      return message.channel.send(errorEmbed);
     }
     // @ts-ignore
     if (!args[0]) return message.reply("You must specify a time in seconds.");
