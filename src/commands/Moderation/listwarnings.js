@@ -1,4 +1,5 @@
 //@ts-check
+const fs = require("fs");
 const { MessageEmbed } = require("discord.js");
 const ytsr = require("ytsr");
 const { red } = require("../../../config/colors.json");
@@ -34,48 +35,48 @@ module.exports = {
       reason,
     };
 
-    await mongoose.connect(mongoURL).then(async (mongoose) => {
-      try {
-        const results = await warnSchema.findOne({
-          guildId,
-          userId,
-          warning,
-        });
+    const myFile = fs.readFileSync("./Logs/warnings.json");
 
-        if (typeof results === "undefined") {
-          return message.channel.send(`:x: | Undefined var`);
+    const warnings = JSON.parse(myFile.toString());
+
+    try {
+      for (var name in warnings) {
+        if (name == goat.username) {
+          return message.channel.send(`This user is warned`);
         }
-
-        const reply = new MessageEmbed()
-          .setTitle(`Warnings for ${userId}`)
-          .setColor("RED");
-
-        console.log(results);
-        // for (const warning of results.warnings) {
-        //   // @ts-ignore
-        //   // const { author, timestamp, reason } = warning;
-        //   // reply.addField(
-        //   //   `By ${author}, on ${new Date(
-        //   //     timestamp
-        //   //   ).toLocaleDateString()}, for ${reason}`
-        //   // );
-        //   console.log(warning);
-        // }
-
-        // message.channel.send(reply);
-      } finally {
-        // mongoose.connection.close();
       }
-    });
+    } catch {
+      console.log("ERROR");
+    }
 
-    warnSchema.findOne({ Guild: message.guild.id }, async (err, data) => {
-      if (data) data.delete();
-      new warnSchema({
-        guildId,
-        userId,
-        warnings: [warning],
-      }).save();
-      message.channel.send(`Warned`);
-    });
+    // await mongoose.connect(mongoURL).then(async (mongoose) => {
+    //   try {
+    //     const results = await warnSchema.find({
+    //       guildId,
+    //       userId,
+    //       warning,
+    //     });
+    //     // console.log(warning);
+
+    //     const reply = new MessageEmbed()
+    //       .setTitle(`Warnings for ${userId}`)
+    //       .setColor("RED");
+
+    //     const warningsnum = results.length;
+
+    //     for (const result of results) {
+    //       console.log(result);
+    //     }
+
+    //     message.channel.send(reply);
+    //   } finally {
+    //     // mongoose.connection.close();
+    //   }
+    // });
   },
 };
+// reply.addField(
+//   `By ${author}, on ${new Date(
+//     timestamp
+//   ).toLocaleDateString()}, for ${reason}`
+// );
