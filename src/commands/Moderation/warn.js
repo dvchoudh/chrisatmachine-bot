@@ -5,6 +5,8 @@ const { red } = require("../../../config/colors.json");
 const warnSchema = require("../../../schemas/warnSchema");
 //@ts-check
 
+const fs = require("fs");
+
 const mongoose = require("mongoose");
 const { setCooldown } = require("../../utils/utils");
 const mongoURL = process.env.MONGODB_URI;
@@ -12,9 +14,9 @@ const mongoURL = process.env.MONGODB_URI;
  * @type {import('../../typings.d').Command}
  */
 module.exports = {
-  name: "warn",
+  name: "t",
   category: "Moderation",
-  aliases: ["w"],
+  aliases: ["geegee"],
   clientPerms: ["MANAGE_MESSAGES"],
 
   execute: async function ({ client, message, args }) {
@@ -34,33 +36,27 @@ module.exports = {
       reason,
     };
 
-    await mongoose.connect(mongoURL).then(async (mongoose) => {
+    const warningData = {
+      name: goat.username,
+      userId: userId,
+      reason: reason,
+    };
+
+    mongoose.connect(mongoURL).then(async (mongoose) => {
       try {
-        await warnSchema.findOneAndUpdate(
-          { Guild: message.guild.id },
-          async (err, data) => {
-            if (data) data.delete();
-            new warnSchema({
-              guildId,
-              userId,
-              warnings: [warning],
-            }).save();
-            message.channel.send(`Warned`);
-          }
-        );
+        console.log("hi");
+        warnSchema.updateOne({ Guild: message.guild.id }, async (err, data) => {
+          new warnSchema({
+            guildId,
+            userId,
+            warnings: [warning],
+            reason,
+          }).save();
+          message.channel.send(`Warned`);
+        });
       } finally {
         mongoose.connection.close();
       }
-    });
-
-    warnSchema.findOne({ Guild: message.guild.id }, async (err, data) => {
-      if (data) data.delete();
-      new warnSchema({
-        guildId,
-        userId,
-        warnings: [warning],
-      }).save();
-      message.channel.send(`Warned`);
     });
   },
 };

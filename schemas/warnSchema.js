@@ -12,6 +12,10 @@ const warnSchema = new Schema({
   warnings: {
     type: [Object],
   },
+
+  reason: {
+    type: String,
+  },
 });
 
 module.exports = model("warnings", warnSchema);

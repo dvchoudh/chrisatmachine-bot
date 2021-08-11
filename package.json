@@ -31,6 +31,7 @@
     "discord.js": "^12.5.3",
     "dotenv": "^10.0.0",
     "ffmpeg-static": "^4.4.0",
+    "fs": "0.0.1-security",
     "got": "^11.8.2",
     "mongoose": "^5.13.5",
     "ms": "^2.1.3",

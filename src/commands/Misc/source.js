@@ -8,7 +8,8 @@ const { setCooldown } = require("../../utils/utils");
 module.exports = {
   name: "source",
   category: "Misc",
-  aliases: ["github"],
+  aliases: [],
+  
   clientPerms: ["SEND_MESSAGES"],
 
   execute: async function ({ client, message, args }) {
