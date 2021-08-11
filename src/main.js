@@ -11,7 +11,10 @@ const client = new discord.Client({ ws: { intents: discord.Intents.ALL } });
 
 const player = new Player(client);
 
+
 client.player = player;
+
+
 
 client.on("ready", () => {
   client.user.setPresence({

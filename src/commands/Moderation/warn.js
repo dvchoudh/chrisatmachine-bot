@@ -14,9 +14,9 @@ const mongoURL = process.env.MONGODB_URI;
  * @type {import('../../typings.d').Command}
  */
 module.exports = {
-  name: "warn",
+  name: "t",
   category: "Moderation",
-  aliases: ["w"],
+  aliases: ["geegee"],
   clientPerms: ["MANAGE_MESSAGES"],
 
   execute: async function ({ client, message, args }) {
@@ -36,89 +36,27 @@ module.exports = {
       reason,
     };
 
-    // const customer = {
-    //   name: "Newbie Co.",
-    //   order_count: 0,
-    //   address: "Po Box City",
-    // };
-    // const jsonString = JSON.stringify(customer);
-    // try {
-    //   fs.writeFile("asdasdjson", jsonString, (err) => {
-    //     if (err) {
-    //       console.log("Error writing file", err);
-    //     } else {
-    //       console.log("Successfully wrote file");
-    //     }
-    //   });
-    //   message.channel.send(`:white_check_mark: | Successfully warned user!`);
-    // } catch (err) {
-    //   console.log("Error writing file", err);
-    // }
     const warningData = {
       name: goat.username,
       userId: userId,
       reason: reason,
     };
 
-    var data = fs.readFileSync("./Logs/warnings.json");
-    var myObject = JSON.parse(data.toString());
-
-    myObject.push(warningData);
-
-    var newData = JSON.stringify(myObject);
-
-    fs.writeFile("./Logs/warnings.json", newData, (err) => {
-      // error checking
-      if (err) throw err;
-
-      console.log("New data added");
+    mongoose.connect(mongoURL).then(async (mongoose) => {
+      try {
+        console.log("hi");
+        warnSchema.updateOne({ Guild: message.guild.id }, async (err, data) => {
+          new warnSchema({
+            guildId,
+            userId,
+            warnings: [warning],
+            reason,
+          }).save();
+          message.channel.send(`Warned`);
+        });
+      } finally {
+        mongoose.connection.close();
+      }
     });
-    // const jsonString = JSON.stringify(warningData);
-    // const fs = require("fs");
-    // fs.appendFile("./Logs/warnings.json", jsonString, (err) => {
-    //   if (err) {
-    //     console.log("Error writing file", err);
-    //   }
-    // });
-    // console.log(jsonString);
-
-    // jsonString.({
-    //   //add the employee
-    //   firstName: "Mike",
-    //   lastName: "Rut",
-    //   time: "10:00 am",
-    //   email: "rut@bah.com",
-    //   phone: "800-888-8888",
-    //   image: "images/mike.jpg",
-    // });
-    // txt = JSON.stringify(data);
-    // await mongoose.connect(mongoURL).then(async (mongoose) => {
-    //   try {
-    //     await warnSchema.findOneAndUpdate(
-    //       { Guild: message.guild.id },
-    //       async (err, data) => {
-    //         if (data) data.delete();
-    //         new warnSchema({
-    //           guildId,
-    //           userId,
-    //           warnings: [warning],
-    //         }).save();
-    //         message.channel.send(`Warned`);
-    //       }
-    //     );
-    //   } finally {
-    //     mongoose.connection.close();
-    //   }
-    // });
-
-    // warnSchema.findOne({ Guild: message.guild.id }, async (err, data) => {
-    //   if (data) data.delete();
-    //   new warnSchema({
-    //     guildId,
-    //     userId,
-    //     warnings: [warning],
-    //   }).save();
-    //   message.channel.send(`Warned`);
-    // });
   },
 };
