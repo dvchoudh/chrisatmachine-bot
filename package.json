@@ -25,10 +25,11 @@
   },
   "dependencies": {
     "@discordjs/opus": "^0.5.3",
+    "@types/node": "^16.4.13",
     "discord-player": "^4.1.4",
     "discord-reply": "^0.1.2",
     "discord-tictactoe": "^2.1.1",
-    "discord.js": "^12.5.3",
+    "discord.js": "^13.0.1",
     "dotenv": "^10.0.0",
     "ffmpeg-static": "^4.4.0",
     "fs": "0.0.1-security",
