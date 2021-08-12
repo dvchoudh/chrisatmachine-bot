@@ -2,7 +2,7 @@
 
 const { MessageEmbed } = require("discord.js");
 const { setCooldown } = require("../../utils/utils");
-
+const PREFIX = process.env.PREFIX;
 /**
  * @type {import('../../typings.d').Command}
  */
@@ -20,13 +20,13 @@ module.exports = {
 
     if (!search_query) {
       const embed = new MessageEmbed()
-        .setTitle("Docs command")
+        .setTitle("Lunarvim Docs")
         .setDescription(
           "LunarVim is an IDE layer for Neovim 0.5 taking advantage of new advancements in Lua scripting such as Treesitter and the Language Server Protocol. LunarVim is opinionated, extensible and fast."
         )
         .addField(
           "LunarVim Installation - Stable",
-          "`.docs install stable`",
+          `${PREFIX}` + "`docs install stable`",
           true
         )
         .addField(
@@ -43,17 +43,21 @@ module.exports = {
 
         .addField(
           "LunarVim Quickstart - Treesitter",
-          "`.docs treesitter`",
+          "`.docs quickstart treesitter`",
           true
         )
 
         .addField(
           "LunarVim Quickstart - Language Server",
-          "`.docs treesitter`",
+          "`.docs quickstart treesitter`",
           true
         )
 
-        .addField("LunarVim Quickstart - Nerd Fonts", "`.docs fonts `", true)
+        .addField(
+          "LunarVim Quickstart - Nerd Fonts",
+          "`.docs quickstart fonts `",
+          true
+        )
 
         .setColor("RED");
       message.channel.send({ embed });
@@ -112,7 +116,7 @@ module.exports = {
       const install_link =
         "https://www.lunarvim.org/02-after-install.html#tree-sitter";
       const embed = new MessageEmbed()
-        .setTitle("LunarVim Uninstallation")
+        .setTitle("LunarVim Quickstart - Treesitter")
         .setURL(install_link)
         .setDescription("Install the treesitter on LunarVim")
         .setColor("RED");
@@ -123,7 +127,7 @@ module.exports = {
       const install_link =
         "https://www.lunarvim.org/02-after-install.html#tree-sitter";
       const embed = new MessageEmbed()
-        .setTitle("LunarVim Uninstallation")
+        .setTitle("LunarVim QUuckstart - Language Server")
         .setURL(install_link)
         .setDescription(
           "Install the Language Server for better Syntax Highlighting and Autocompletion"
