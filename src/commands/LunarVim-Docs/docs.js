@@ -60,7 +60,7 @@ module.exports = {
         )
 
         .setColor("RED");
-      message.channel.send({ embed });
+      message.channel.send({ embeds: [embed] });
     }
 
     if (search_query == "install" && args2 == "stable") {
@@ -71,7 +71,8 @@ module.exports = {
         .setURL(install_link)
         .setDescription("Installing the stable verion of LunarVim")
         .setColor("RED");
-      message.channel.send({ embed });
+
+      message.channel.send({ embeds: [embed] });
     }
 
     if (search_query == "install" && args2 == "rolling") {
@@ -82,7 +83,7 @@ module.exports = {
         .setURL(install_link)
         .setDescription("Installing the rolling [beta] verion of LunarVim")
         .setColor("RED");
-      message.channel.send({ embed });
+      message.channel.send({ embeds: [embed] });
     }
 
     if (
@@ -98,7 +99,7 @@ module.exports = {
           "Troubleshooting problems with installation of LunarVim"
         )
         .setColor("RED");
-      message.channel.send({ embed });
+      message.channel.send({ embeds: [embed]});
     }
 
     if (search_query == "uninstall") {
@@ -109,7 +110,7 @@ module.exports = {
         .setURL(install_link)
         .setDescription("Uninstall LunarVim")
         .setColor("RED");
-      message.channel.send({ embed });
+      message.channel.send({ embeds: [embed] });
     }
 
     if (search_query == "quickstart" && args2 == "treesitter") {
@@ -120,7 +121,7 @@ module.exports = {
         .setURL(install_link)
         .setDescription("Install the treesitter on LunarVim")
         .setColor("RED");
-      message.channel.send({ embed });
+      message.channel.send({ embeds: [embed] });
     }
 
     if (search_query == "quickstart" && args2 == "langserver") {
@@ -133,7 +134,7 @@ module.exports = {
           "Install the Language Server for better Syntax Highlighting and Autocompletion"
         )
         .setColor("RED");
-      message.channel.send({ embed });
+      message.channel.send({ embeds: [embed] });
     }
 
     if (
@@ -149,7 +150,7 @@ module.exports = {
           "Install NerdFont on your system for rendering the icons"
         )
         .setColor("RED");
-      message.channel.send({ embed });
+      message.channel.send({ embeds: [embed] });
     }
   },
 };
