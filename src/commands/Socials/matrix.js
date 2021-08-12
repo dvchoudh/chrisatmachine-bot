@@ -19,8 +19,8 @@ module.exports = {
       .setDescription(
         "[View Chris's Matrix Community!](https://matrix.to/#/+atmachine:matrix.org)"
       )
-      .setColor(red);
+      .setColor("RED");
 
-    message.channel.send({ embed });
+    message.channel.send({ embeds: [embed] });
   },
 };
