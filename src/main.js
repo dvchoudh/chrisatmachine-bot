@@ -1,41 +1,35 @@
 require("dotenv").config();
 const discord = require("discord.js");
-const { Intents, Client } = require("discord.js")
+const { Intents, Collection, MessageEmbed } = require("discord.js")
 const mongoose = require("mongoose");
-
 const { registerCommands, registerEvents } = require("./utils/registry");
 const { log } = require("./utils/utils");
 const { Player } = require("discord-player");
 const fs = require("fs");
 require("discord-reply");
-const client = new discord.Client({ intents: [Intents.FLAGS.GUILDS] });
+const client = new discord.Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.DIRECT_MESSAGES] });
 
 const player = new Player(client);
 
 client.player = player;
 
 client.on("ready", () => {
-  client.user.setPresence({
-    status: "dnd",
-    activity: {
-      name: " the prefix c@m | c@m help",
-      type: "PLAYING",
-    },
-  });
+
+  client.user.setPresence({ activities: [{ name: 'with discord.js' }], status: 'idle' });
 });
 
 (async () => {
-  client.commands = new discord.Collection();
-  client.categories = new discord.Collection();
-  client.guildInfoCache = new discord.Collection();
-  client.userInfoCache = new discord.Collection();
+  client.commands = new Collection();
+  client.categories = new Collection();
+  client.guildInfoCache = new Collection();
+  client.userInfoCache = new Collection();
 
   client.DBGuild = require("../schemas/guildSchema");
   client.DBConfig = require("../schemas/config");
   client.DBUser = require("../schemas/userSchema");
 
-  client.serverCooldowns = new discord.Collection();
-  client.globalCooldowns = new discord.Collection();
+  client.serverCooldowns = new Collection();
+  client.globalCooldowns = new Collection();
 
   await registerEvents(client, "../eventHandlers");
   await registerCommands(client, "../commands");
@@ -84,6 +78,4 @@ client.on("ready", () => {
   );
 })();
 
-client.player.on("trackStart", (message, track) =>
-  message.channel.send(`Now playing ${track.title}...`)
-);
+
