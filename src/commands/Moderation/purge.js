@@ -1,9 +1,9 @@
 //@ts-check
 
 const { setCooldown } = require("../../utils/utils");
-const { MessageEmbed } = require("discord.js");
+const { MessageEmbed, Permissions } = require("discord.js");
 const ytsr = require("ytsr");
-const { red } = require("../../../config/colors.json");
+// const { red } = require("../../../config/colors.json");
 
 /**
  * @type {import('../../typings.d').Command}
@@ -17,14 +17,14 @@ module.exports = {
   execute: async function ({ client, message, args }) {
     setCooldown(client, this, message);
     // @ts-ignore
-    if (!message.member.hasPermission("MANAGE_MEMBERS")) {
-      const errorEmbed = new MessageEmbed()
-        .setDescription(
-          `${message.author}, You do not have permission to run this command!`
-        )
-        .setColor("RED");
-      return message.channel.send(errorEmbed);
-    }
+    // if (!message.member.permissions.has([Permissions.FLAGS.KICK_MEMBERS])) {
+    //   const errorEmbed = new MessageEmbed()
+    //     .setDescription(
+    //       `${message.author}, You do not have permission to run this command!`
+    //     )
+    //     .setColor("RED");
+    //   return message.channel.send({embeds: [errorEmbed]});
+    // }
     // const args = message.content.split(' ').slice(1); // All arguments behind the command name with the prefix
     const amount = parseInt(args.join(" ")); // Amount of messages which should be deleted
     if (!amount)
@@ -50,8 +50,8 @@ module.exports = {
 
     const embed = new MessageEmbed()
       .setTitle(`Purged ${amount} messages`)
-      .setColor(red);
+      .setColor("RED");
 
-    message.channel.send(embed);
+    message.channel.send({embeds: [embed]});
   },
 };
