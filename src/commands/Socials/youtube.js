@@ -21,9 +21,9 @@ module.exports = {
       .setDescription(
         "[View Chris's Youtube](https://www.youtube.com/channel/UCS97tchJDq17Qms3cux8wcA)"
       )
-      .setColor(red);
+      .setColor("RED");
 
-    message.channel.send({ embed });
+    message.channel.send({ embeds: [embed] });
   },
 };
 
