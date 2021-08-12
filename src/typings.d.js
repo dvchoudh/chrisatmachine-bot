@@ -1,5 +1,5 @@
-const { Client } = require('discord.js');
-const { Model } = require('mongoose');
+const { Client } = require("discord.js");
+const { Model } = require("mongoose");
 
 /**
  * @typedef guildInfo
@@ -24,7 +24,7 @@ const { Model } = require('mongoose');
 /**
  * @typedef languageHelp
  * @type {object}
- * @property {string} usage 
+ * @property {string} usage
  * @property {string} aliases
  * @property {string} description
  * @property {string} examples
@@ -41,69 +41,69 @@ const { Model } = require('mongoose');
  * @class
  */
 class myClient extends Client {
-    constructor() {
-        /**
-         * A collection containing all commands
-         * @type {import('discord.js').Collection<Snowflake, Command>}
-         */
-        this.commands;
+  constructor() {
+    /**
+     * A collection containing all commands
+     * @type {import('discord.js').Collection<Snowflake, Command>}
+     */
+    this.commands;
 
-        /**
-         * A collection containing all categories and the commands inside that category
-         * @type {import('discord.js').Collection<Snowflake, string[]>}
-         */
-        this.categories;
+    /**
+     * A collection containing all categories and the commands inside that category
+     * @type {import('discord.js').Collection<Snowflake, string[]>}
+     */
+    this.categories;
 
-        /**
-         * A collection containing all cached guildInfo
-         * @type {import('discord.js').Collection<Snowflake, guildInfo>}
-         */
-        this.guildInfoCache;
+    /**
+     * A collection containing all cached guildInfo
+     * @type {import('discord.js').Collection<Snowflake, guildInfo>}
+     */
+    this.guildInfoCache;
 
-        /**
-         * A collection containing all cached userInfo
-         * @type {import('discord.js').Collection<Snowflake, userInfo>}
-         */
-        this.userInfoCache;
+    /**
+     * A collection containing all cached userInfo
+     * @type {import('discord.js').Collection<Snowflake, userInfo>}
+     */
+    this.userInfoCache;
 
-        /**
-         * A set containing all Discord IDs of blacklisted users
-         * @type {Set<Snowflake>}
-         */
-        this.blacklistCache;
+    /**
+     * A set containing all Discord IDs of blacklisted users
+     * @type {Set<Snowflake>}
+     */
+    this.blacklistCache;
 
-        /**
-         * A reference to the guildSchema
-         * @type {Model<guildInfo, {}>}
-         */
-        this.DBGuild;
+    /**
+     * A reference to the guildSchema
+     * @type {Model<guildInfo, {}>}
+     */
+    this.DBGuild;
 
-        /**
-         * A reference to the guildSchema
-         * @type {Model<userInfo, {}>}
-         */
-        this.DBUser;
+    /**
+     * A reference to the guildSchema
+     * @type {Model<userInfo, {}>}
+     */
+    this.DBUser;
 
-        /**
-         * A reference to the config schema
-         * @type {Model<>}
-         */
-        this.DBConfig;
+    /**
+     * A reference to the config schema
+     * @type {Model<>}
+     */
+    this.DBConfig;
 
-        /**
-         * A collection containing all stored server cooldowns
-         * @type {import('discord.js').Collection<Snowflake, Collection<string, Collection<Snowflake, number>>>}
-         */
-        this.serverCooldowns;
+    /**
+     * A collection containing all stored server cooldowns
+     * @type {import('discord.js').Collection<Snowflake, Collection<string, Collection<Snowflake, number>>>}
+     */
+    this.serverCooldowns;
 
-        /**
-         * A collection containing all stored global cooldowns
-         * @type {import('discord.js').Collection<string, Collection<Snowflake, number>>}
-         */
-        this.globalCooldowns;
-        
-        this.player = undefined;
-    }
+    /**
+     * A collection containing all stored global cooldowns
+     * @type {import('discord.js').Collection<string, Collection<Snowflake, number>>}
+     */
+    this.globalCooldowns;
+
+    this.player = undefined;
+  }
 }
 
 /**
@@ -111,10 +111,10 @@ class myClient extends Client {
  * @type {Array.<SomethingArgument|NumberArgument|ChannelArgument|RoleArgument|AuthorOrMemberArgument|MemberArgument|AttachmentArgument|TimeArgument>}
  */
 
- /**
-  * @typedef Flags
-  * @type {Object.<string, *>}
-  */
+/**
+ * @typedef Flags
+ * @type {Object.<string, *>}
+ */
 
 /**
  * @typedef SomethingArgument
@@ -215,7 +215,6 @@ class myClient extends Client {
  * @property {myClient} ExecuteFunctionParameters.client - The client instance
  * @property {import('discord.js').Message} ExecuteFunctionParameters.message - The message sent by the user
  * @property {string[]} ExecuteFunctionParameters.args - The message arguments
- * @property {Flags} ExecuteFunctionParameters.flags - The processed arguments mapped by their ID
  */
 
 /**
@@ -244,4 +243,4 @@ class myClient extends Client {
  * @property {ExecuteFunction} execute - The function that will be ran when someone successfully uses a command
  */
 
-module.exports = { myClient }
+module.exports = { myClient };

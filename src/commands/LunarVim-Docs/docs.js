@@ -26,7 +26,7 @@ module.exports = {
         )
         .addField(
           "LunarVim Installation - Stable",
-          `${PREFIX}` + "`docs install stable`",
+          "`.docs install stable`",
           true
         )
         .addField(
@@ -63,57 +63,54 @@ module.exports = {
       message.channel.send({ embeds: [embed] });
     }
 
-  if (search_query == "install"){
-    if (!args2){
-      const myembed = new MessageEmbed()
-        .setTitle("LunarVim Installation")
-        .setDescription("LunarVim Installation Links")
-        .addField("Stable", "`.docs install stable`", true)
-        .addField("Rolling", "`.docs install rolling`", true)
-        .addField("Troubleshooting", "`.docs install troubleshooting`", true)
+    if (search_query == "install" || search_query == "add") {
+      if (!args2) {
+        const myembed = new MessageEmbed()
+          .setTitle("LunarVim Installation")
+          .setDescription("LunarVim Installation Links")
+          .addField("Stable", "`.docs install stable`", true)
+          .addField("Rolling", "`.docs install rolling`", true)
+          .addField("Troubleshooting", "`.docs install troubleshoot`", true)
 
-        .setColor("RED")
-      message.channel.send({embeds: [myembed]})
+          .setColor("RED");
+        message.channel.send({ embeds: [myembed] });
+      }
+      if (args2 == "stable") {
+        const install_link =
+          "https://www.lunarvim.org/01-installing.html#rolling";
+        const embed = new MessageEmbed()
+          .setTitle("LunarVim Installation - Stable")
+          .setURL(install_link)
+          .setDescription("Installing the stable verion of LunarVim")
+          .setColor("RED");
+
+        message.channel.send({ embeds: [embed] });
+      }
+
+      if (args2 == "rolling") {
+        const install_link =
+          "https://www.lunarvim.org/01-installing.html#rolling";
+        const embed = new MessageEmbed()
+          .setTitle("LunarVim Installation - Rolling")
+          .setURL(install_link)
+          .setDescription("Installing the rolling [beta] verion of LunarVim")
+          .setColor("RED");
+        message.channel.send({ embeds: [embed] });
+      }
+
+      if (args2 == "troubleshoot" || args2 == "troubleshooting") {
+        const install_link =
+          "https://www.lunarvim.org/01-installing.html#troubleshooting-installation-problems";
+        const embed = new MessageEmbed()
+          .setTitle("LunarVim Installation - Troubleshooting")
+          .setURL(install_link)
+          .setDescription(
+            "Troubleshooting problems with installation of LunarVim"
+          )
+          .setColor("RED");
+        message.channel.send({ embeds: [embed] });
+      }
     }
-    if (args2 == "stable"){
-      const install_link =
-        "https://www.lunarvim.org/01-installing.html#rolling";
-      const embed = new MessageEmbed()
-        .setTitle("LunarVim Installation - Stable")
-        .setURL(install_link)
-        .setDescription("Installing the stable verion of LunarVim")
-        .setColor("RED");
-
-      message.channel.send({ embeds: [embed] });
-  }
-
-  if (args2 == "rolling"){
-
-      const install_link =
-        "https://www.lunarvim.org/01-installing.html#rolling";
-      const embed = new MessageEmbed()
-        .setTitle("LunarVim Installation - Rolling")
-        .setURL(install_link)
-        .setDescription("Installing the rolling [beta] verion of LunarVim")
-        .setColor("RED");
-      message.channel.send({ embeds: [embed] });
-  }
-
-  if (args2 == "troubleshoot" || args2 == "troublrshooting"){
-
-      const install_link =
-        "https://www.lunarvim.org/01-installing.html#troubleshooting-installation-problems";
-      const embed = new MessageEmbed()
-        .setTitle("LunarVim Installation - Troubleshooting")
-        .setURL(install_link)
-        .setDescription(
-          "Troubleshooting problems with installation of LunarVim"
-        )
-        .setColor("RED");
-      message.channel.send({ embeds: [embed]});
-  }
-}
-
 
     if (search_query == "uninstall") {
       const install_link =
@@ -152,6 +149,8 @@ module.exports = {
 
     if (
       (search_query == "quickstart" && args2 == "fonts") ||
+      search_query == "font" ||
+      search_query == "fonts" ||
       args2 == "nerdfonts"
     ) {
       const install_link =

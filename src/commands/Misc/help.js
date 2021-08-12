@@ -26,7 +26,7 @@ module.exports = {
   name: "help",
   category: "Misc",
   aliases: ["h"],
-  clientPerms: ["SEND_MESSAGES", "EMBED_LINKS"],
+  clientPerms: [""],
 
   execute: async function ({ client, message, args }) {
     setCooldown(client, this, message);
@@ -111,14 +111,14 @@ module.exports = {
       )
         hEmbed.setAuthor(languageHelp.isDisabled);
 
-      message.channel.send({embeds: [hEmbed]});
+      message.channel.send({ embeds: [hEmbed] });
     } else if (category) {
       hEmbed
         .setTitle(category[0])
         .setTimestamp()
         .setDescription("`" + category.slice(1).join("`, `") + "`");
 
-      message.channel.send({embeds: [hEmbed]});
+      message.channel.send({ embeds: [hEmbed] });
     } else defaultHelp(client, message, guildPrefix, languageHelp);
   },
 };
@@ -145,7 +145,7 @@ async function defaultHelp(client, message, guildPrefix, languageHelp) {
         .join("\n\n")
     );
 
-  message.channel.send({embeds: [hEmbed]});
+  message.channel.send({ embeds: [hEmbed] });
 }
 
 /**

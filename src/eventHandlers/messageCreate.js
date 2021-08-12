@@ -8,7 +8,12 @@ const {
   getCooldown,
   getGuildInfo,
 } = require("../utils/utils");
-const { Collection, MessageEmbed, Permissions, PermissionResolvable } = require("discord.js");
+const {
+  Collection,
+  MessageEmbed,
+  Permissions,
+  PermissionResolvable,
+} = require("discord.js");
 const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 /**
@@ -18,10 +23,7 @@ const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
  */
 module.exports = async (client, message) => {
   try {
-    if (
-      message.author.bot ||
-      client.blacklistCache.has(message.author.id) 
-    )
+    if (message.author.bot || client.blacklistCache.has(message.author.id))
       return;
 
     let guildInfo = await getGuildInfo(client, message.guild.id);
@@ -39,7 +41,7 @@ module.exports = async (client, message) => {
     let cmdName = msgargs.shift().toLowerCase();
 
     if (message.mentions.has(client.user) && !cmdName)
-      return message.channel.send({content : "hi"})
+      return message.channel.send({ content: "hi" });
     const command =
       client.commands.get(cmdName) ||
       (guildInfo.commandAlias
@@ -66,7 +68,7 @@ module.exports = async (client, message) => {
       return;
 
     // if (
-    //   command.clientPerms 
+    //   command.clientPerms
     //   // !message.channel
     //   //   .permissionsFor(message.guild.me)
     //   //   .has(command.clientPerms, true)
@@ -162,26 +164,31 @@ module.exports = async (client, message) => {
       return;
     }
 
-    
-    const myperms = guildInfo.commandPerms[command.name]
-  
+    const myperms = guildInfo.commandPerms[command.name];
 
     // const permsstring = new Permissions(myperms)
-     if (!message.member.permissions.has(myperms)) {
+    if (
+      guildInfo.commandPerms &&
+      guildInfo.commandPerms[command.name] &&
+      !message.member.permissions.has(guildInfo.commandPerms[command.name])
+    ) {
       const errorEmbed = new MessageEmbed()
         .setDescription(
-          `${message.author}, You are missing the following permissions to run this command: ${missingPermissions(message.member, guildInfo.commandPerms[command.name])} `
+          `${
+            message.author
+          }, You are missing the following permissions to run this command: ${missingPermissions(
+            message.member,
+            guildInfo.commandPerms[command.name]
+          )} `
         )
         .setColor("RED");
-      return message.channel.send({embeds: [errorEmbed]});
+      return message.channel.send({ embeds: [errorEmbed] });
     }
-
 
     command.execute({
       client: client,
       message: message,
       args: msgargs,
-      flags: flags,
     });
   } catch (e) {
     log("ERROR", "src/eventHandlers/message.js", e.message);
