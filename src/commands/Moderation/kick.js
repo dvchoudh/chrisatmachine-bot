@@ -1,6 +1,6 @@
 //@ts-check
 const { setCooldown } = require("../../utils/utils");
-const { MessageEmbed } = require("discord.js");
+const { MessageEmbed, Permissions } = require("discord.js");
 /**
  * @type {import('../../typings.d').Command}
  */
@@ -12,14 +12,14 @@ module.exports = {
 
   execute: async function ({ client, message, args }) {
     setCooldown(client, this, message);
-    if (!message.member.hasPermission("KICK_MEMBERS")) {
-      const errorEmbed = new MessageEmbed()
-        .setDescription(
-          `${message.author}, You do not have permission to run this command!`
-        )
-        .setColor("RED");
-      return message.channel.send(errorEmbed);
-    }
+    // if (!message.member.permissions.has([Permissions.FLAGS.KICK_MEMBERS])) {
+    //   const errorEmbed = new MessageEmbed()
+    //     .setDescription(
+    //       `${message.author}, You do not have permission to run this command!`
+    //     )
+    //     .setColor("RED");
+    //   return message.channel.send({embeds: [errorEmbed]});
+    // }
     let member = message.mentions.members.first();
     if (!member)
       return message.reply("Please specify a member for me to kick them");
@@ -29,7 +29,7 @@ module.exports = {
       const errorEmbed = new MessageEmbed()
         .setDescription(`This member cannot be kicked`)
         .setColor("RED");
-      return message.channel.send(errorEmbed);
+      return message.channel.send({embeds: [errorEmbed]});
     }
     try {
       const sembed2 = new MessageEmbed()
@@ -41,7 +41,7 @@ module.exports = {
         )
         .setFooter(message.guild.name, message.guild.iconURL());
       member
-        .send(sembed2)
+        .send({embeds: [sembed2]})
         .then(() => member.kick())
         .catch(() => null);
     } catch {
@@ -54,12 +54,12 @@ module.exports = {
         .setDescription(
           `**${member.user.username}** has been kicked for ${reason}`
         );
-      message.channel.send(sembed);
+      message.channel.send({embeds: [sembed]});
     } else {
       var sembed2 = new MessageEmbed()
         .setColor("GREEN")
         .setDescription(`**${member.user.username}** has been kicked`);
-      message.channel.send(sembed2);
+      message.channel.send({embeds: [sembed2]});
     }
     // member.kick(reason).catch((err) => console.log(err));
   },
