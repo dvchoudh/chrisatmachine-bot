@@ -1,13 +1,20 @@
 require("dotenv").config();
 const discord = require("discord.js");
+
 const { Intents, Collection, MessageEmbed } = require("discord.js")
+
+
 const mongoose = require("mongoose");
 const { registerCommands, registerEvents } = require("./utils/registry");
 const { log } = require("./utils/utils");
 const { Player } = require("discord-player");
 const fs = require("fs");
 require("discord-reply");
+
 const client = new discord.Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.DIRECT_MESSAGES] });
+
+const client = new discord.Client();
+
 
 const player = new Player(client);
 
