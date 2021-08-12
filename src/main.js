@@ -1,5 +1,6 @@
 require("dotenv").config();
 const discord = require("discord.js");
+const { Intents, Client } = require("discord.js")
 const mongoose = require("mongoose");
 
 const { registerCommands, registerEvents } = require("./utils/registry");
@@ -7,14 +8,11 @@ const { log } = require("./utils/utils");
 const { Player } = require("discord-player");
 const fs = require("fs");
 require("discord-reply");
-const client = new discord.Client({ ws: { intents: discord.Intents.ALL } });
+const client = new discord.Client({ intents: [Intents.FLAGS.GUILDS] });
 
 const player = new Player(client);
 
-
 client.player = player;
-
-
 
 client.on("ready", () => {
   client.user.setPresence({
