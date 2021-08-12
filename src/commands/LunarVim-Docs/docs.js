@@ -63,7 +63,19 @@ module.exports = {
       message.channel.send({ embeds: [embed] });
     }
 
-    if (search_query == "install" && args2 == "stable") {
+  if (search_query == "install"){
+    if (!args2){
+      const myembed = new MessageEmbed()
+        .setTitle("LunarVim Installation")
+        .setDescription("LunarVim Installation Links")
+        .addField("Stable", "`.docs install stable`", true)
+        .addField("Rolling", "`.docs install rolling`", true)
+        .addField("Troubleshooting", "`.docs install troubleshooting`", true)
+
+        .setColor("RED")
+      message.channel.send({embeds: [myembed]})
+    }
+    if (args2 == "stable"){
       const install_link =
         "https://www.lunarvim.org/01-installing.html#rolling";
       const embed = new MessageEmbed()
@@ -73,9 +85,10 @@ module.exports = {
         .setColor("RED");
 
       message.channel.send({ embeds: [embed] });
-    }
+  }
 
-    if (search_query == "install" && args2 == "rolling") {
+  if (args2 == "rolling"){
+
       const install_link =
         "https://www.lunarvim.org/01-installing.html#rolling";
       const embed = new MessageEmbed()
@@ -84,12 +97,10 @@ module.exports = {
         .setDescription("Installing the rolling [beta] verion of LunarVim")
         .setColor("RED");
       message.channel.send({ embeds: [embed] });
-    }
+  }
 
-    if (
-      (search_query == "install" && args2 == "troubleshoot") ||
-      args2 == "troubleshooting"
-    ) {
+  if (args2 == "troubleshoot" || args2 == "troublrshooting"){
+
       const install_link =
         "https://www.lunarvim.org/01-installing.html#troubleshooting-installation-problems";
       const embed = new MessageEmbed()
@@ -100,7 +111,9 @@ module.exports = {
         )
         .setColor("RED");
       message.channel.send({ embeds: [embed]});
-    }
+  }
+}
+
 
     if (search_query == "uninstall") {
       const install_link =
