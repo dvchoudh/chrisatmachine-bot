@@ -22,6 +22,6 @@ module.exports = {
       )
       .setColor(red);
 
-    message.channel.send({ embed });
+    message.channel.send({ embeds: [embed] });
   },
 };
