@@ -19,8 +19,8 @@ module.exports = {
       .setDescription(
         "[View Chris' GitHub](https://github.com/ChristianChiarulli)"
       )
-      .setColor(red);
+      .setColor("RED");
 
-    message.channel.send({ embed });
+    message.channel.send({ embeds: [embed] });
   },
 };
