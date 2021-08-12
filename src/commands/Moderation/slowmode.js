@@ -1,5 +1,5 @@
 //@ts-check
-const { MessageEmbed } = require("discord.js");
+const { MessageEmbed, Permissions } = require("discord.js");
 const ytsr = require("ytsr");
 const { red } = require("../../../config/colors.json");
 
@@ -18,14 +18,14 @@ module.exports = {
 
   execute: async function ({ client, message, args }) {
     // @ts-ignore
-    if (!message.member.hasPermission("MANAGE_MEMBERS")) {
-      const errorEmbed = new MessageEmbed()
-        .setDescription(
-          `${message.author}, You do not have permission to run this command!`
-        )
-        .setColor("RED");
-      return message.channel.send(errorEmbed);
-    }
+    // if (!message.member.permissions.has([Permissions.FLAGS.MANAGE_MESSAGES])){
+    //   const errorEmbed = new MessageEmbed()
+    //     .setDescription(
+    //       `${message.author}, You do not have permission to run this command!`
+    //     )
+    //     .setColor("RED");
+    //   return message.channel.send({embeds: [errorEmbed]});
+    // }
     // @ts-ignore
     if (!args[0]) return message.reply("You must specify a time in seconds.");
     const time = parseInt(args[0]);
