@@ -1,0 +1,6 @@
+config.json
+node_modules/ 
+.env
+.idea/
+package-lock.json
+.DS_Store
