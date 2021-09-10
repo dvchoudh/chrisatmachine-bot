@@ -58,14 +58,23 @@ module.exports = {
 			"formatter-formatting": "https://www.lunarvim.org/languages/#formatting",
 			"linting": "https://www.lunarvim.org/languages/#linting",
 
+			"nice-noice-bruh-sus": "[LMAO loser](https://www.youtube.com/watch?v=dQw4w9WgXcQ)",
+
 			// PLUGINS
 			"vim-fugitive": "https://www.lunarvim.org/plugins/02-extra-plugins.html#vim-fugitive",
 			"trouble": "https://www.lunarvim.org/plugins/02-extra-plugins.html#trouble-nvim",
 			"indent-blanklines": "https://www.lunarvim.org/plugins/02-extra-plugins.html#indent-blankline",
 			"compe-cmp-tabnine": "https://www.lunarvim.org/plugins/02-extra-plugins.html#compe-tabnine",
 			"telescope": "https://www.lunarvim.org/plugins/02-extra-plugins.html#telescope-fzy-native-nvim",
+			"minimap-plugin-minimap": "https://www.lunarvim.org/plugins/02-extra-plugins.html#minimap",
+			"ranger-plugin-ranger": "https://www.lunarvim.org/plugins/02-extra-plugins.html#rnvimr",
+			"git-diffview": "https://www.lunarvim.org/plugins/02-extra-plugins.html#diffview",
+			"octo-nvim-git": "https://www.lunarvim.org/plugins/02-extra-plugins.html#octo",
+			"nvim-ts-rainbow": "https://www.lunarvim.org/plugins/02-extra-plugins.html#nvim-ts-rainbow",
+			"autosave": "https://www.lunarvim.org/plugins/02-extra-plugins.html#autosave",
+			"markdown-preview-markdownpreview": "https://www.lunarvim.org/plugins/02-extra-plugins.html#markdown-preview-nvim",
+			"neoscroll": "https://www.lunarvim.org/plugins/02-extra-plugins.html#neoscroll"
 
-			"nice-noice-bruh": "[LMAO loser](https://www.youtube.com/watch?v=dQw4w9WgXcQ)"
 		};
 
 		let count = 0;
