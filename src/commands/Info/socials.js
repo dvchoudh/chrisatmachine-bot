@@ -32,10 +32,10 @@ module.exports = {
 			.setDescription(`
 			[ ​ ​​ ​Github](https://github.com/ChristianChiarulli)
 			[​ ​​ ​ Patreon](https://www.patreon.com/chrisatmachine)
-			[ ​ ​​ ​youtube](https://www.youtube.com/channel/UCS97tchJDq17Qms3cux8wcA)
-			[異 ​ ​​ ​odysee](https://odysee.com/@chrisatmachine:f)
-			[暑 ​ ​​ ​twitter](https://twitter.com/chrisatmachine)
-			[ ​ ​​ ​linkedin](https://www.linkedin.com/in/christianchiarulli/)
+			[ ​ ​​ ​Youtube](https://www.youtube.com/channel/UCS97tchJDq17Qms3cux8wcA)
+			[異 ​ ​​ ​Odysee](https://odysee.com/@chrisatmachine:f)
+			[暑 ​ ​​ ​Twitter](https://twitter.com/chrisatmachine)
+			[ ​ ​​ ​Linkedin](https://www.linkedin.com/in/christianchiarulli/)
 			`)
 
 		message.channel.send({ embeds: [em] });
