@@ -7,6 +7,7 @@ const client = new Client({
     "GUILD_INVITES",
     "GUILD_MEMBERS",
     "GUILD_MESSAGES",
+	"GUILD_MESSAGE_REACTIONS"
   ],
   allowedMentions: {
     parse: ["everyone", "roles", "users"],
