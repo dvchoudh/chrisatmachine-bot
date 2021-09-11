@@ -32,7 +32,7 @@ module.exports = {
 		// TODO: need to add categories: languages, extra-plugins
 		const lunarDocs = {
 			"lunarvim-github": "https://github.com/LunarVim/LunarVim",
-			"installing-uninstalling": "https://www.lunarvim.org/01-installing.html",
+			"installing-uninstalling": "https://www.lunarvim.org/01-installing.html#uninstall",
 			"stable": "https://www.lunarvim.org/01-installing.html#stable",
 			"rolling": "https://www.lunarvim.org/01-installing.html#rolling",
 
@@ -41,18 +41,22 @@ module.exports = {
 			"which-key-whichkey": "https://www.lunarvim.org/configuration/02-keybindings.html#whichkey-bindings",
 
 			"quickstart-after-install": "https://www.lunarvim.org/02-after-install.html",
-			"general-settings": "https://www.lunarvim.org/configuration/01-settings.html",
+			"general-settings-options": "https://www.lunarvim.org/configuration/01-settings.html",
 			"keybindings-keybinds-keymaps-keymappings": "https://www.lunarvim.org/configuration/02-keybindings.html",
 			"autocmds-autocommands": "https://www.lunarvim.org/configuration/05-autocommands.html",
 			"color-schemes-colorschemes": "https://www.lunarvim.org/configuration/03-colorschemes.html",
 			"statusline-lualine-galaxyline": "https://www.lunarvim.org/configuration/06-statusline.html",
+
+			"general-keybinds-general-keybindings": "https://www.lunarvim.org/configuration/02-keybindings.html#general-bindings",
+			"leader-key": "https://www.lunarvim.org/configuration/02-keybindings.html#leader-key",
+			"transparent-window-blur": "https://www.lunarvim.org/configuration/03-colorschemes.html#transparent-windows",
 
 			"core-plugins-dashboard-bufferline-terminal-toggleterm": "https://www.lunarvim.org/plugins/#core-plugins",
 			"install-plugins": "https://www.lunarvim.org/plugins/01-installing.html#example",
 			"remove-plugins-delete-plugins": "https://www.lunarvim.org/plugins/01-installing.html#removing-plugins",
 			"style-guide": "https://www.lunarvim.org/dev/#style-guide",
 
-			"langs-cpp-javascript-php-python-rust-ruby-lua": "https://www.lunarvim.org/languages/",
+			"langs-cpp-javascript-php-python-rust-ruby-luacsharp-go-json-scala-vue-svelte-react-typescript": "https://www.lunarvim.org/languages/",
 			"lvinfo-lunarvim-info": "https://www.lunarvim.org/languages/#lunarvim-info",
 			"install-lsp-lspinstall": "https://www.lunarvim.org/languages/#lsp",
 			"formatter-formatting": "https://www.lunarvim.org/languages/#formatting",
@@ -62,7 +66,7 @@ module.exports = {
 
 			// PLUGINS
 			"vim-fugitive": "https://www.lunarvim.org/plugins/02-extra-plugins.html#vim-fugitive",
-			"trouble": "https://www.lunarvim.org/plugins/02-extra-plugins.html#trouble-nvim",
+			"trouble-folke": "https://www.lunarvim.org/plugins/02-extra-plugins.html#trouble-nvim",
 			"indent-blanklines": "https://www.lunarvim.org/plugins/02-extra-plugins.html#indent-blankline",
 			"compe-cmp-tabnine": "https://www.lunarvim.org/plugins/02-extra-plugins.html#compe-tabnine",
 			"telescope": "https://www.lunarvim.org/plugins/02-extra-plugins.html#telescope-fzy-native-nvim",
@@ -73,7 +77,12 @@ module.exports = {
 			"nvim-ts-rainbow": "https://www.lunarvim.org/plugins/02-extra-plugins.html#nvim-ts-rainbow",
 			"autosave": "https://www.lunarvim.org/plugins/02-extra-plugins.html#autosave",
 			"markdown-preview-markdownpreview": "https://www.lunarvim.org/plugins/02-extra-plugins.html#markdown-preview-nvim",
-			"neoscroll": "https://www.lunarvim.org/plugins/02-extra-plugins.html#neoscroll"
+			"neoscroll": "https://www.lunarvim.org/plugins/02-extra-plugins.html#neoscroll",
+			"nvim-ts-autotag": "https://www.lunarvim.org/plugins/02-extra-plugins.html#nvim-ts-autotag",
+			"commentary-kommentary": "https://www.lunarvim.org/plugins/02-extra-plugins.html#nvim-ts-context-commentstring",
+			"todo-comments-folke": "https://www.lunarvim.org/plugins/02-extra-plugins.html#todo-comments-nvim",
+			"folke": "https://www.lunarvim.org/plugins/02-extra-plugins.html#lsp-colors",
+			"persistence-folke": "https://www.lunarvim.org/plugins/02-extra-plugins.html#persistence"
 
 		};
 
@@ -89,11 +98,11 @@ module.exports = {
 				message.channel.send({ embeds: [em] });
 			}
 		});
-		if (count <=0) {
+		if (count <= 0) {
 			const failed = new MessageEmbed()
 				.setDescription(`Couldn't get docs for ${search_query}`)
 				.setColor("RED");
-			message.channel.send({embeds: [failed]})
+			message.channel.send({ embeds: [failed] })
 		}
 	},
 };
