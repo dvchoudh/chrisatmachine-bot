@@ -27,6 +27,7 @@ module.exports = {
 	*/
 	execute: async (client, message, args) => {
 		const search_query = args.join("-");
+		if (!args.length) return
 		// const args2 = args[1];
 
 		// TODO: need to add categories: languages, extra-plugins
