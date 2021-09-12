@@ -51,10 +51,11 @@ module.exports = {
 			"leader-key": "https://www.lunarvim.org/configuration/02-keybindings.html#leader-key",
 			"transparent-window-blur": "https://www.lunarvim.org/configuration/03-colorschemes.html#transparent-windows",
 
-			"core-plugins-dashboard-bufferline-terminal-toggleterm": "https://www.lunarvim.org/plugins/#core-plugins",
+			"core-nvim-tree-nvim_tree-plugins-dashboard-bufferline-terminal-toggleterm-dap": "https://www.lunarvim.org/plugins/#core-plugins",
 			"install-plugins": "https://www.lunarvim.org/plugins/01-installing.html#example",
 			"remove-plugins-delete-plugins": "https://www.lunarvim.org/plugins/01-installing.html#removing-plugins",
 			"style-guide": "https://www.lunarvim.org/dev/#style-guide",
+			"treesitter": "https://www.lunarvim.org/plugins/02-extra-plugins.html#treesitter",
 
 			"langs-cpp-javascript-php-python-rust-ruby-luacsharp-go-json-scala-vue-svelte-react-typescript": "https://www.lunarvim.org/languages/",
 			"lvinfo-lunarvim-info": "https://www.lunarvim.org/languages/#lunarvim-info",
@@ -81,8 +82,9 @@ module.exports = {
 			"nvim-ts-autotag": "https://www.lunarvim.org/plugins/02-extra-plugins.html#nvim-ts-autotag",
 			"commentary-kommentary": "https://www.lunarvim.org/plugins/02-extra-plugins.html#nvim-ts-context-commentstring",
 			"todo-comments-folke": "https://www.lunarvim.org/plugins/02-extra-plugins.html#todo-comments-nvim",
-			"folke": "https://www.lunarvim.org/plugins/02-extra-plugins.html#lsp-colors",
-			"persistence-folke": "https://www.lunarvim.org/plugins/02-extra-plugins.html#persistence"
+			"folke-lsp-colors": "https://www.lunarvim.org/plugins/02-extra-plugins.html#lsp-colors",
+			"persistence-folke": "https://www.lunarvim.org/plugins/02-extra-plugins.html#persistence",
+			"bracey": "https://www.lunarvim.org/plugins/02-extra-plugins.html#bracey"
 
 		};
 
