@@ -64,8 +64,6 @@ module.exports = {
 			"formatter-formatting": "https://www.lunarvim.org/languages/#formatting",
 			"linting": "https://www.lunarvim.org/languages/#linting",
 
-			"nice-noice-bruh-sus": "[LMAO loser](https://www.youtube.com/watch?v=dQw4w9WgXcQ)",
-
 			// PLUGINS
 			"vim-fugitive": "https://www.lunarvim.org/plugins/02-extra-plugins.html#vim-fugitive",
 			"trouble-folke": "https://www.lunarvim.org/plugins/02-extra-plugins.html#trouble-nvim",

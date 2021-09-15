@@ -10,7 +10,7 @@ module.exports = async (client) => {
     status: "online",
     activities: [
       {
-        name: "with discord.js v13",
+        name: "the prefix . | .help",
         type: "PLAYING",
       },
     ],

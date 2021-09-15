@@ -4,7 +4,7 @@ const { readdirSync } = require("fs");
 const prefix = process.env.PREFIX;
 module.exports = {
   name: "help",
-  description: "To get the latency of the bot.",
+  description: "Ouput the bot's help window.",
   perms: {
     client: [
       Permissions.FLAGS.SEND_MESSAGES,
@@ -13,7 +13,7 @@ module.exports = {
     ],
     user: [Permissions.FLAGS.SEND_MESSAGES],
   },
-  aliases: [],
+  aliases: ["h"],
 
   /**
    *

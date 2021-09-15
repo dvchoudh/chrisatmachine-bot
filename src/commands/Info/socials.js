@@ -2,7 +2,7 @@ const { Permissions, Client, Message, MessageEmbed } = require("discord.js");
 
 module.exports = {
 	name: "socials",
-	description: "To get the latency of the bot.",
+	description: "Links to Chris' socials.",
 	perms: {
 		client: [
 			Permissions.FLAGS.SEND_MESSAGES,

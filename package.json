@@ -4,7 +4,7 @@
   "description": "A Discord Bot made for Chris' Discord server.",
   "main": "main.js",
   "engines": {
-	"node": "16"
+    "node": "16"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -26,6 +26,6 @@
     "discord.js": "^13.1.0",
     "dotenv": "^10.0.0",
     "got": "^11.8.2",
-	"ytsr": "3.5.3"
+    "ytsr": "3.5.3"
   }
 }
