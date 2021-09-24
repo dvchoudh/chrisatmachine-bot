@@ -28,11 +28,12 @@ const lunarDocs = {
 	"style-guide-styling": "https://www.lunarvim.org/dev/#style-guide",
 	"treesitter-tree-sitter": "https://www.lunarvim.org/plugins/02-extra-plugins.html#treesitter",
 
-	"langs-cpp-javascript-php-python3-rust-ruby-lua-csharp-go-json-scala-vue2-svelte-react-typescript-julia-powershell": "https://www.lunarvim.org/languages/",
+	"langs-languages-php-lua-csharp-svelte-react-typescript-julia-powershell": "https://www.lunarvim.org/languages/",
 	"lvinfo-lunarvim-info-lunarinfo": "https://www.lunarvim.org/languages/#lunarvim-info",
 	"install-lsp-lspinstall": "https://www.lunarvim.org/languages/#lsp",
 	"formatter-formatting": "https://www.lunarvim.org/languages/#formatting",
 	"linting-linter": "https://www.lunarvim.org/languages/#linting",
+	"faqs-frequently-asked-questions": "https://www.lunarvim.org/community/faq.html",
 
 	// PLUGINS
 	"vim-fugitive": "https://www.lunarvim.org/plugins/02-extra-plugins.html#vim-fugitive",
@@ -66,7 +67,25 @@ const lunarDocs = {
 	"lsp-signature.nvim": "https://www.lunarvim.org/plugins/02-extra-plugins.html#lsp-signature-nvim",
 	"symbols-outline.nvim": "https://www.lunarvim.org/plugins/02-extra-plugins.html#symbols-outline-nvim",
 	"nvim-lastplace.nvim-last-place": "https://www.lunarvim.org/plugins/02-extra-plugins.html#symbols-outline-nvim",
-	"nvim-cursor-word-cursorword-cusor-word-highlight": "https://www.lunarvim.org/plugins/02-extra-plugins.html#vim-cursorword"
+	"nvim-cursor-word-cursorword-cusor-word-highlight": "https://www.lunarvim.org/plugins/02-extra-plugins.html#vim-cursorword",
+	"null-ls-nullls": "https://www.lunarvim.org/community/faq.html#what-is-null-ls-and-why-do-you-use-it",
+	"go-to-preview.nvim-goto-preview": "https://www.lunarvim.org/plugins/02-extra-plugins.html#goto-preview",
+	"vim-surround": "https://www.lunarvim.org/plugins/02-extra-plugins.html#vim-surround",
+
+	// Langs
+	"c-lang-c-clangd-cpp-lang-cpp-c++-lang-c++": "https://www.lunarvim.org/languages/c_cpp.html#c-c",
+	"go-lang-go-golang": "https://www.lunarvim.org/languages/go.html#go",
+	"java-lang-java": "https://www.lunarvim.org/languages/java.html#java",
+	"javascript-lang-javascript-js-lang-js": "https://www.lunarvim.org/languages/javascript.html#javascript",
+	"json-lang-json": "https://www.lunarvim.org/languages/json.html#json",
+	"julia-lang-julia": "https://www.lunarvim.org/languages/julia.html#julia",
+	"ps-lang-ps-powershell-lang-powershell": "https://www.lunarvim.org/languages/powershell.html#powershell",
+	"python-lang-python-py-lang-py-python3-lang-python3": "https://www.lunarvim.org/languages/python.html#python",
+	"ruby-lang-ruby": "https://www.lunarvim.org/languages/ruby.html#ruby",
+	"rust-lang-rust": "https://www.lunarvim.org/languages/rust.html#rust",
+	"scala-lang-scala": "https://www.lunarvim.org/languages/scala.html#scala",
+	"typescript-lang-typescript-ts-lang-ts": "https://www.lunarvim.org/languages/typescript.html#typescript",
+	"vue-lang-vue": "https://www.lunarvim.org/languages/vue.html#vue"
 };
 
 /**
@@ -89,14 +108,22 @@ module.exports = {
 	aliases: ["docs", "doc", "documentation", "rtfm"],
 
 	/**
-   *
-   * @param {Client} client
-   * @param {Message} message
-   * @param {String[]} args
+	 *
+	 * @param {Client} client
+	 * @param {Message} message
+	 * @param {String[]} args
 	*/
 	execute: async (client, message, args) => {
 		const search_query = args.join("-");
 		if (!args.length) return
+		if (search_query.length <= 2) {
+			const notEnough = new MessageEmbed()
+				.setDescription("Argument length too small!")
+				.setColor("RED");
+			message.channel.send({ embeds: [notEnough] });
+
+			return
+		}
 
 		let count = 0;
 		Object.keys(lunarDocs).map((query) => {
